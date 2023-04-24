@@ -4,44 +4,50 @@ function chargerClasse($classe){
 }
 spl_autoload_register('chargerClasse');
 
+$_currentX = 0;
 $_currentY = 1;
 $_currentAngle = 0;
 
+$baseClass = new BaseClass();
 
-$baseClass = new BaseClass((int) $_currentX, (int) $_currentY, (int) $_currentAngle);
+$baseClass->setCurrentX(0);
+$baseClass->setCurrentY(1);
+$baseClass->setCurrentAngle(0);
+
 if (count($_POST) != 0){
     // var_dump($_POST);
 
     foreach ($_POST as $key => $value){
         switch ($key){
             case 'upArrow':
-                $baseClass->goFoward((int) $_currentX, (int) $_currentY, (int) $_currentAngle);
+                $baseClass->goForward($_currentX, $_currentY, $_currentAngle);
                 break;
 
             case 'leftArrow':
-                $baseClass->goLeft((int) $_currentX, (int) $_currentY, (int) $_currentAngle);
+                $baseClass->goLeft($_currentX, $_currentY, $_currentAngle);
                 break;
 
             case 'rightArrow':
-                $baseClass->goRight((int) $_currentX, (int) $_currentY, (int) $_currentAngle);
+                $baseClass->goRight($_currentX, $_currentY, $_currentAngle);
                 break;
 
             case 'downArrow':
-                $baseClass->goBack((int) $_currentX, (int) $_currentY, (int) $_currentAngle);
+                $baseClass->goBack($_currentX, $_currentY, $_currentAngle);
                 break;
 
             case 'leftRotate':
-                $baseClass->goTurnLeft((int) $_currentX, (int) $_currentY, (int) $_currentAngle);
+                $baseClass->goTurnLeft($_currentX, $_currentY, $_currentAngle);
                 break;
 
             case 'rightRotate':
-                $baseClass->goTurnRight((int) $_currentX, (int) $_currentY, (int) $_currentAngle);
+                $baseClass->goTurnRight($_currentX, $_currentY, $_currentAngle);
                 break;
             
         }
     }
-
 }
+var_dump($baseClass);
+var_dump($baseClass->checkForward($_currentX, $_currentY, $_currentAngle));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -57,22 +63,21 @@ if (count($_POST) != 0){
             <form method="post">
                 <table>
                     <tr>
-                        <td><button name="leftRotate">\</button></td>
-                        <td><button name="upArrow">^</button></td>
-                        <td><button name="rightRotate">/</button></td>
+                        <td><input type="submit" name="leftRotate" id="leftRotate" value="\"></td>
+                        <td><input type="submit" name="upArrow" id="upArrow" value="^"></td>
+                        <td><input type="submit" name="rightRotate" id="rightRotate" value="/"></td>
                     </tr>
                     <tr>
-                        <td><button name="leftArrow"><</button></td>
-                        <td><button name="btnAction">X</button></td>
-                        <td><button name="rightArrow">></button></td>
+                        <td><input type="submit" name="leftArrow" id="leftArrow" value="<"></td>
+                        <td><input type="submit" name="btnAction" id="btnAction" value="X"></td>
+                        <td><input type="submit" name="rightArrow" id="rightArrow" value=">"></td>
                     </tr>
                     <tr>
-                        <td><button name="downArrow">V</button></td>
+                        <td><input type="submit" name="downArrow" id="downArrow" value="V"></td>
                     </tr>
                 </table>
             </form>
             <div>
-                <img src="assets/compass.png" alt="Bousole">
             </div>
         </div>
     </section>
