@@ -41,11 +41,14 @@ class BaseClass{
 
     // Fonction de vérification du movement si il est possible ou non
     private function _checkMove(int $_currentX, int $_currentY, int $_currentAngle) {
+        $this->_currentX = $_currentX;
+        $this->_currentY = $_currentY;
+        $this->_currentAngle = $_currentAngle;
         $sql = "SELECT * FROM map WHERE coordx=:currentX AND coordy=:currentY AND direction=:currentAngle";
         $query = $this->_dbh->prepare($sql);
-        $query->bindParam(':currentX', $_currentX, PDO::PARAM_INT);
-        $query->bindParam(':currentY', $_currentY, PDO::PARAM_INT);
-        $query->bindParam(':currentAngle', $_currentAngle, PDO::PARAM_INT);
+        $query->bindParam(':currentX', $this->_currentX, PDO::PARAM_INT);
+        $query->bindParam(':currentY', $this->_currentY, PDO::PARAM_INT);
+        $query->bindParam(':currentAngle', $this->_currentAngle, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_OBJ);
         if (!empty($result)){
