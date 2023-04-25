@@ -1,6 +1,6 @@
 <?php
 function chargerClasse($classe){
-    require 'classe_php/'.$classe.'.class.php';
+    require 'classe/'.$classe.'.class.php';
 }
 spl_autoload_register('chargerClasse');
 
@@ -9,18 +9,22 @@ $_currentY = 1;
 $_currentAngle = 0;
 
 $baseClass = new BaseClass();
+$view = new FirstPersonView();
 
-$baseClass->setCurrentX(0);
-$baseClass->setCurrentY(1);
-$baseClass->setCurrentAngle(0);
+// var_dump($view->setView($_currentX,$_currentY,$_currentAngle));
+
 
 if (count($_POST) != 0){
     // var_dump($_POST);
-
+    if (isset($_POST['currentx']) === true){
+        $baseClass->setCurrentX((int) $_POST['currentx']);
+        $baseClass->setCurrentY((int) $_POST['currenty']);
+        $baseClass->setCurrentAngle((int) $_POST['currentangle']);
+    }
     foreach ($_POST as $key => $value){
         switch ($key){
             case 'upArrow':
-                $baseClass->goForward($_currentX, $_currentY, $_currentAngle);
+                $baseClass->goForward();
                 break;
 
             case 'leftArrow':
@@ -43,11 +47,11 @@ if (count($_POST) != 0){
                 $baseClass->goTurnRight($_currentX, $_currentY, $_currentAngle);
                 break;
             
+            }
         }
     }
-}
-var_dump($baseClass);
-var_dump($baseClass->checkForward($_currentX, $_currentY, $_currentAngle));
+    // var_dump($baseClass);
+    // var_dump($baseClass->getCurrentX());
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -60,7 +64,13 @@ var_dump($baseClass->checkForward($_currentX, $_currentY, $_currentAngle));
 <body>
     <section>
         <div>
+            <img src="images/<?= $view->getView($_currentX,$_currentY,$_currentAngle); ?>" alt="">
+        </div>
+        <div>
             <form method="post">
+                <input type="hidden" name="currentx" value="<?= $baseClass->getCurrentX(); ?>">
+                <input type="hidden" name="currenty" value="<?= $baseClass->getCurrentY(); ?>">
+                <input type="hidden" name="currentangle" value="<?= $baseClass->getCurrentAngle(); ?>">
                 <table>
                     <tr>
                         <td><input type="submit" name="leftRotate" id="leftRotate" value="\"></td>
@@ -73,12 +83,10 @@ var_dump($baseClass->checkForward($_currentX, $_currentY, $_currentAngle));
                         <td><input type="submit" name="rightArrow" id="rightArrow" value=">"></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" name="downArrow" id="downArrow" value="V"></td>
+                        <td><input type="submit" name="downArrow" id="downArrow" value="v"></td>
                     </tr>
                 </table>
             </form>
-            <div>
-            </div>
         </div>
     </section>
     <section>

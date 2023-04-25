@@ -1,8 +1,8 @@
 <?php
 class BaseClass{
-    protected $_currentX;
-    protected $_currentY;
-    protected $_currentAngle;
+    protected $_currentX = 0;
+    protected $_currentY = 1;
+    protected $_currentAngle = 0;
     protected $_dbh;
 
     public function __construct() {
@@ -10,40 +10,37 @@ class BaseClass{
     }
 
     // === currentX ===
-    public function setCurrentX(int $_currentX){
-        if ($this->_currentX <= 1 && $this->_currentX >= 0){
+    public function setCurrentX($_currentX){
+        if ($this->_currentX > 0 || $this->_currentX < 1){
             $this->_currentX = $_currentX;
         }
     }
     public function getCurrentX(){
-        return $this-> $_currentX;
+        return $this->_currentX;
     }
 
     // === currentY ===
-    public function setCurrentY(int $_currentY){
+    public function setCurrentY($_currentY){
         if ($this->_currentY <= 2 && $this->_currentY >= 0){
             $this->_currentY = $_currentY;
         }
     }
     public function getCurrentY(){
-        return $this->$_currentY;
+        return $this->_currentY;
     }
 
     // === currentAngle ===
-    public function setCurrentAngle(int $_currentAngle){
+    public function setCurrentAngle($_currentAngle){
         if ($this->_currentAngle <= 270 && $this->_currentAngle >= 0){
             $this->_currentAngle = $_currentAngle;
         }
     }
     public function getCurrentAngle(){
-        return $this-> $_currentAngle;
+        return $this->_currentAngle;
     }
 
     // Fonction de vérification du movement si il est possible ou non
-    private function _checkMove(int $_currentX, int $_currentY, int $_currentAngle) {
-        $this->_currentX = $_currentX;
-        $this->_currentY = $_currentY;
-        $this->_currentAngle = $_currentAngle;
+    private function _checkMove() {
         $sql = "SELECT * FROM map WHERE coordx=:currentX AND coordy=:currentY AND direction=:currentAngle";
         $query = $this->_dbh->prepare($sql);
         $query->bindParam(':currentX', $this->_currentX, PDO::PARAM_INT);
@@ -52,36 +49,34 @@ class BaseClass{
         $query->execute();
         $result = $query->fetch(PDO::FETCH_OBJ);
         if (!empty($result)){
-            $_currentX = $result->coordx;
-            $_currentY = $result->coordy;
             return true;
         }else{
             return false;
         }
     }
 
-    public function checkForward(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->_checkMove($_currentX, $_currentY, $_currentAngle) == true){
+    public function checkForward(){
+        if ($this->_checkMove() == true){
             return true;
         }else{
             return false;
         }
     }
 
-    public function goForward(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->checkForward($_currentX, $_currentY, $_currentAngle) == true){
-            switch ($_currentAngle){
+    public function goForward(){
+        if ($this->checkForward() == true){
+            switch ($this->_currentAngle){
                 case 0:
-                    $_currentX++;
+                    $this->_currentX++;
                     break;
                 case 90:
-                    $_currentY++;
+                    $this->_currentY++;
                     break;
                 case 180:
-                    $_currentX--;
+                    $this->_currentX--;
                     break;
                 case 270:
-                    $_currentY--;
+                    $this->_currentY--;
                     break;
             }
         }
