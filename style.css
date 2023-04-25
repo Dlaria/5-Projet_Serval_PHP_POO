@@ -1,3 +1,16 @@
+body{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+div.screen{
+    text-align:center;
+}
+img.screen{
+    width:80%;
+    margin:0 auto;
+}
 img.est {
     rotate: 0deg;
 }
@@ -9,4 +22,28 @@ img.ouest{
 }
 img.sud{
     rotate:270deg;
+}
+
+#section-1 {
+    width:80%;
+    margin:0 auto;
+    text-align:center;
+}
+div.boutons{
+    width:30%;
+    background-color:rgb(118, 180, 219);
+}
+table {
+    background-color:blue;
+    text-align:center;
+    border-radius:20px;
+    width:50%;
+    margin:0 auto;
+    
+}
+img.compass{
+    width:50%;
+}
+div.text{
+    width:70%;
 }

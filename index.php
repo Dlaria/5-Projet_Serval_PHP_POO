@@ -7,7 +7,7 @@ spl_autoload_register('chargerClasse');
 $view = new FirstPersonView();
 
 if (count($_POST) != 0){
-    var_dump($_POST);
+    // var_dump($_POST);
     if (isset($_POST['currentx']) === true){
         $view->setCurrentX((int) $_POST['currentx']);
         $view->setCurrentY((int) $_POST['currenty']);
@@ -42,8 +42,8 @@ if (count($_POST) != 0){
             }
         }
     }
-    var_dump($view);
-    var_dump($view->checkForward());
+    // var_dump($view);
+    // var_dump($view->checkForward());
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -55,15 +55,15 @@ if (count($_POST) != 0){
     <title>Comme Doom</title>
 </head>
 <body>
-    <section>
+    <div class="screen">
+        <img class="screen" src="images/<?= $view->getView(); ?>" alt="">
+    </div>
+    <section id="section-1">
         <form method="post">
-        <div>
-            <img src="images/<?= $view->getView(); ?>" alt="">
-        </div>
-        <div>
-                <input type="hidden" name="currentx" value="<?= $view->getCurrentX(); ?>">
-                <input type="hidden" name="currenty" value="<?= $view->getCurrentY(); ?>">
-                <input type="hidden" name="currentangle" value="<?= $view->getCurrentAngle(); ?>">
+            <input type="hidden" name="currentx" value="<?= $view->getCurrentX(); ?>">
+            <input type="hidden" name="currenty" value="<?= $view->getCurrentY(); ?>">
+            <input type="hidden" name="currentangle" value="<?= $view->getCurrentAngle(); ?>">
+            <div class="boutons">
                 <table>
                     <tr>
                         <td><input type="submit" name="leftRotate" id="leftRotate" value="\"></td>
@@ -79,13 +79,12 @@ if (count($_POST) != 0){
                         <td><input type="submit" name="downArrow" id="downArrow" value="v"></td>
                     </tr>
                 </table>
-                <div>
-                    <img src="assets/compass.png" alt="" class="<?= $view->getAnimCompass(); ?>">
-                </div>
-            </form>
-        </div>
+                    <img src="assets/compass.png" alt="compass" class="compass <?= $view->getAnimCompass(); ?>">
+            </div>
+        </form>
+        <!-- pour afficher le text -->
+        <div class="text"></div>
     </section>
-    <section>
     </section>
 </body>
 </html>
