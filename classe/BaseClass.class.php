@@ -1,17 +1,21 @@
 <?php
 class BaseClass{
-    protected $_currentX = 0;
-    protected $_currentY = 1;
-    protected $_currentAngle = 0;
+    protected $_currentX;
+    protected $_currentY;
+    protected $_currentAngle;
     protected $_dbh;
 
     public function __construct() {
         $this->_dbh = new Database();
+        $this->_currentX = 0;
+        $this->_currentY = 1;
+        $this->_currentAngle = 0;
+
     }
 
     // === currentX ===
     public function setCurrentX($_currentX){
-        if ($this->_currentX > 0 || $this->_currentX < 1){
+        if ($this->_currentX >= 0 || $this->_currentX <= 1){
             $this->_currentX = $_currentX;
         }
     }
@@ -82,139 +86,133 @@ class BaseClass{
         }
     }
 
-    public function checkBack(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->_checkMove($_currentX, $_currentY, $_currentAngle)){
+    public function checkBack(){
+        if ($this->_checkMove() == true){
             return true;
         }else{
             return false;
         }
     }
-    public function goBack(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->checkBack($_currentX, $_currentY, $_currentAngle) == true){
-            switch ($_currentAngle){
+    public function goBack(){
+        if ($this->checkBack() == true){
+            switch ($this->_currentAngle){
                 case 0:
-                    $_currentX--;
+                    $this->_currentX--;
                     break;
                 case 90:
-                    $_currentY--;
+                    $this->_currentY--;
                     break;
                 case 180:
-                    $_currentX++;
+                    $this->_currentX++;
                     break;
                 case 270:
-                    $_currentY++;
+                    $this->_currentY++;
                     break;
             }
         }
     }
     
-    public function checkRight(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->_checkMove($_currentX, $_currentY, $_currentAngle)){
+    public function checkRight(){
+        if ($this->_checkMove() == true){
             return true;
         }else{
             return false;
         }
     }
-    public function goRight(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->checkRight($_currentX, $_currentY, $_currentAngle) == true){
-            switch ($_currentAngle){
+    public function goRight(){
+        if ($this->checkRight() == true){
+            switch ($this->_currentAngle){
                 case 0:
-                    $_currentY--;
+                    $this->_currentY--;
                     break;
                 case 90:
-                    $_currentX++;
+                    $this->_currentX++;
                     break;
                 case 180:
-                    $_currentY++;
+                    $this->_currentY++;
                     break;
                 case 270:
-                    $_currentX--;
+                    $this->_currentX--;
                     break;
             }
         }
     }
 
-    public function checkLeft(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->_checkMove($_currentX, $_currentY, $_currentAngle)){
+    public function checkLeft(){
+        if ($this->_checkMove() == true){
             return true;
         }else{
             return false;
         }
     }
-    public function goLeft(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->checkLeft($_currentX, $_currentY, $_currentAngle) == true){
-            switch ($_currentAngle){
+    public function goLeft(){
+        if ($this->checkLeft() == true){
+            switch ($this->_currentAngle){
                 case 0:
-                    $_currentY++;
+                    $this->_currentY++;
                     break;
                 case 90:
-                    $_currentX--;
+                    $this->_currentX--;
                     break;
                 case 180:
-                    $_currentY--;
+                    $this->_currentY--;
                     break;
                 case 270:
-                    $_currentX++;
+                    $this->_currentX++;
                     break;
             }
         }
     }
 
-    public function checkTurnRight(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->_checkMove($_currentX, $_currentY, $_currentAngle)){
+    public function checkTurnRight(){
+        if ($this->_checkMove() == true){
             return true;
         }else{
             return false;
         }
     }
-    public function goTurnRight(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->checkTurnRight($_currentX, $_currentY, $_currentAngle) == true){
-            switch ($_currentAngle){
+    public function goTurnRight(){
+        if ($this->checkTurnRight() == true){
+            switch ($this->_currentAngle){
                 case 0:
-                    $_currentAngle = 270;
+                    $this->_currentAngle = 270;
                     break;
                 case 90:
-                    $_currentAngle = 0;
+                    $this->_currentAngle = 0;
                     break;
                 case 180:
-                    $_currentAngle = 90;
+                    $this->_currentAngle = 90;
                     break;
                 case 270:
-                    $_currentAngle = 180;
+                    $this->_currentAngle = 180;
                     break;
                 }
-            var_dump($_currentX);
-            var_dump($_currentY);
-            var_dump($_currentAngle);
         }
     }
 
-    public function checkTurnLeft(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->_checkMove($_currentX, $_currentY, $_currentAngle)){
+    public function checkTurnLeft(){
+        if ($this->_checkMove() == true){
             return true;
         }else{
             return false;
         }
     }
-    public function goTurnLeft(int $_currentX, int $_currentY, int $_currentAngle){
-        if ($this->checkTurnLeft($_currentX, $_currentY, $_currentAngle) == true){
-            switch ($_currentAngle){
+    public function goTurnLeft(){
+        if ($this->checkTurnLeft() == true){
+            switch ($this->_currentAngle){
                 case 0:
-                    $_currentAngle = 90;
+                    $this->_currentAngle = 90;
                     break;
                 case 90:
-                    $_currentAngle = 180;
+                    $this->_currentAngle = 180;
                     break;
                 case 180:
-                    $_currentAngle = 270;
+                    $this->_currentAngle = 270;
                     break;
                 case 270:
-                    $_currentAngle = 0;
+                    $this->_currentAngle = 0;
                     break;
             }
-            var_dump($_currentX);
-            var_dump($_currentY);
-            var_dump($_currentAngle);
         }
     }
 }

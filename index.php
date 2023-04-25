@@ -4,54 +4,46 @@ function chargerClasse($classe){
 }
 spl_autoload_register('chargerClasse');
 
-$_currentX = 0;
-$_currentY = 1;
-$_currentAngle = 0;
-
-$baseClass = new BaseClass();
 $view = new FirstPersonView();
 
-// var_dump($view->setView($_currentX,$_currentY,$_currentAngle));
-
-
 if (count($_POST) != 0){
-    // var_dump($_POST);
+    var_dump($_POST);
     if (isset($_POST['currentx']) === true){
-        $baseClass->setCurrentX((int) $_POST['currentx']);
-        $baseClass->setCurrentY((int) $_POST['currenty']);
-        $baseClass->setCurrentAngle((int) $_POST['currentangle']);
+        $view->setCurrentX((int) $_POST['currentx']);
+        $view->setCurrentY((int) $_POST['currenty']);
+        $view->setCurrentAngle((int) $_POST['currentangle']);
     }
     foreach ($_POST as $key => $value){
         switch ($key){
             case 'upArrow':
-                $baseClass->goForward();
+                $view->goForward();
                 break;
 
             case 'leftArrow':
-                $baseClass->goLeft($_currentX, $_currentY, $_currentAngle);
+                $view->goLeft();
                 break;
 
             case 'rightArrow':
-                $baseClass->goRight($_currentX, $_currentY, $_currentAngle);
+                $view->goRight();
                 break;
 
             case 'downArrow':
-                $baseClass->goBack($_currentX, $_currentY, $_currentAngle);
+                $view->goBack();
                 break;
 
             case 'leftRotate':
-                $baseClass->goTurnLeft($_currentX, $_currentY, $_currentAngle);
+                $view->goTurnLeft();
                 break;
 
             case 'rightRotate':
-                $baseClass->goTurnRight($_currentX, $_currentY, $_currentAngle);
+                $view->goTurnRight();
                 break;
             
             }
         }
     }
-    // var_dump($baseClass);
-    // var_dump($baseClass->getCurrentX());
+    var_dump($view);
+    var_dump($view->checkForward());
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -59,18 +51,19 @@ if (count($_POST) != 0){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Comme Doom</title>
 </head>
 <body>
     <section>
+        <form method="post">
         <div>
-            <img src="images/<?= $view->getView($_currentX,$_currentY,$_currentAngle); ?>" alt="">
+            <img src="images/<?= $view->getView(); ?>" alt="">
         </div>
         <div>
-            <form method="post">
-                <input type="hidden" name="currentx" value="<?= $baseClass->getCurrentX(); ?>">
-                <input type="hidden" name="currenty" value="<?= $baseClass->getCurrentY(); ?>">
-                <input type="hidden" name="currentangle" value="<?= $baseClass->getCurrentAngle(); ?>">
+                <input type="hidden" name="currentx" value="<?= $view->getCurrentX(); ?>">
+                <input type="hidden" name="currenty" value="<?= $view->getCurrentY(); ?>">
+                <input type="hidden" name="currentangle" value="<?= $view->getCurrentAngle(); ?>">
                 <table>
                     <tr>
                         <td><input type="submit" name="leftRotate" id="leftRotate" value="\"></td>
@@ -86,6 +79,9 @@ if (count($_POST) != 0){
                         <td><input type="submit" name="downArrow" id="downArrow" value="v"></td>
                     </tr>
                 </table>
+                <div>
+                    <img src="assets/compass.png" alt="" class="<?= $view->getAnimCompass(); ?>">
+                </div>
             </form>
         </div>
     </section>

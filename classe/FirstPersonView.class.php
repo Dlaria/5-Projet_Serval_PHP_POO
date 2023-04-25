@@ -2,33 +2,49 @@
 class FirstPersonView extends BaseClass {
     protected $_mapId;
 
-    public function setView(int $X,int $Y,int $Ag){
+    public function setView(){
         $sql = "SELECT * FROM image 
         INNER JOIN map ON map.id = image.map_id
         WHERE coordx=:X AND coordy=:Y AND direction=:Ag";
         $query = $this->_dbh->prepare($sql);
-        $query->bindParam(':X',$X,PDO::PARAM_INT);
-        $query->bindParam(':Y',$Y,PDO::PARAM_INT);
-        $query->bindParam(':Ag',$Ag,PDO::PARAM_INT);
+        $query->bindParam(':X',$this->_currentX,PDO::PARAM_INT);
+        $query->bindParam(':Y',$this->_currentY,PDO::PARAM_INT);
+        $query->bindParam(':Ag',$this->_currentAngle,PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_OBJ);
         if (!empty($result)){
-            $this->_mapId = (int) $result->map_id;
+            $this->_mapId = $result->map_id;
             return true;
         }else{
             return false;
         }
     }
-    public function getView(int $X,int $Y,int $Ag){
-        if ($this->setView($X,$Y,$Ag) == true){
+    public function getView(){
+        if ($this->setView() == true){
             $query = $this->_dbh->prepare("SELECT * FROM image WHERE map_id=:mapid");
-            $query->bindParam(':mapid',$this->_mapId,PDO::PARAM_INT);
+            $query->bindParam(':mapid',$this->_mapId);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_OBJ);
             if (!empty($result)){
-                $path = $result->path;
-                return $path;
+                return $result->path;
             }
         }
+    }
+    public function getAnimCompass(){
+        switch ($this->_currentAngle){
+            case 0:
+                $cssClass = "est";
+                break;
+            case 90:
+                $cssClass = "nord";
+                break;
+            case 180:
+                $cssClass = "ouest";
+                break;
+            case 270:
+                $cssClass = "sud";
+                break;
+        }
+        return $cssClass;
     }
 }

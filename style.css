@@ -1,0 +1,12 @@
+img.est {
+    rotate: 0deg;
+}
+img.nord{
+    rotate: 90deg;
+}
+img.ouest{
+    rotate:180deg;
+}
+img.sud{
+    rotate:270deg;
+}
