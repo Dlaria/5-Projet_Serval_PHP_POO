@@ -22,8 +22,9 @@ class FirstPersonText extends BaseClass {
 
     public function getText(FirstPersonView $data){
         if ($this->setText($data) == true){
-            $query = $data->_dbh->prepare("SELECT * FROM text WHERE map_id=:mapId");
+            $query = $data->_dbh->prepare("SELECT * FROM text WHERE map_id=:mapId AND status_action=:actionStatus");
             $query->bindParam(':mapId',$this->_mapId);
+            $query->bindParam(':actionStatus',$data->_actionStatus,PDO::PARAM_INT);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_OBJ);
             if(!empty($result)){

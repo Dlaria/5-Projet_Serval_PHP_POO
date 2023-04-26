@@ -6,6 +6,7 @@ spl_autoload_register('chargerClasse');
 
 $view = new FirstPersonView();
 $text = new FirstPersonText();
+$action = new FirstPersonAction();
 
 if (count($_POST) != 0){
     // var_dump($_POST);
@@ -39,11 +40,15 @@ if (count($_POST) != 0){
             case 'rightRotate':
                 $view->goTurnRight();
                 break;
+
+            case 'btnAction':
+                $view->setActionStatus();
+                $action->goAction($view);
+
             
             }
         }
     }
-    // var_dump($view);
 ?>
 <!DOCTYPE html>
 <html lang="fr">

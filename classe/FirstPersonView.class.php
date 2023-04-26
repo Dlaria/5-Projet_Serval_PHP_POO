@@ -21,8 +21,9 @@ class FirstPersonView extends BaseClass {
     }
     public function getView(){
         if ($this->setView() == true){
-            $query = $this->_dbh->prepare("SELECT * FROM image WHERE map_id=:mapid");
+            $query = $this->_dbh->prepare("SELECT * FROM image WHERE map_id=:mapid AND status_action=:actionStatus");
             $query->bindParam(':mapid',$this->_mapId);
+            $query->bindParam(':actionStatus',$this->_actionStatus,PDO::PARAM_INT);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_OBJ);
             if (!empty($result)){

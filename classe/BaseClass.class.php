@@ -4,12 +4,14 @@ class BaseClass{
     protected $_currentY;
     protected $_currentAngle;
     protected $_dbh;
+    protected $_actionStatus;
 
     public function __construct() {
         $this->_dbh = new Database();
         $this->_currentX = 0;
         $this->_currentY = 1;
         $this->_currentAngle = 0;
+        $this->_actionStatus = 0;
 
     }
 
@@ -43,13 +45,18 @@ class BaseClass{
         return $this->_currentAngle;
     }
 
+    public function setActionStatus(){
+            $this->_actionStatus = 1;
+    }
+
     // Fonction de vérification du movement si il est possible ou non
-    private function _checkMove() {
-        $sql = "SELECT * FROM map WHERE coordx=:currentX AND coordy=:currentY AND direction=:currentAngle";
+    public function _checkMove() {
+        $sql = "SELECT * FROM map WHERE coordx=:currentX AND coordy=:currentY AND direction=:currentAngle AND status_action=:actionStatus";
         $query = $this->_dbh->prepare($sql);
         $query->bindParam(':currentX', $this->_currentX, PDO::PARAM_INT);
         $query->bindParam(':currentY', $this->_currentY, PDO::PARAM_INT);
         $query->bindParam(':currentAngle', $this->_currentAngle, PDO::PARAM_INT);
+        $query->bindParam(':actionStatus',$this->_actionStatus,PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_OBJ);
         if (!empty($result)){
