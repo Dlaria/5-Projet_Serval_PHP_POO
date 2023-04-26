@@ -5,6 +5,7 @@ function chargerClasse($classe){
 spl_autoload_register('chargerClasse');
 
 $view = new FirstPersonView();
+$text = new FirstPersonText();
 
 if (count($_POST) != 0){
     // var_dump($_POST);
@@ -43,7 +44,6 @@ if (count($_POST) != 0){
         }
     }
     // var_dump($view);
-    // var_dump($view->checkForward());
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -83,7 +83,9 @@ if (count($_POST) != 0){
             </div>
         </form>
         <!-- pour afficher le text -->
-        <div class="text"></div>
+        <div class="text">
+            <p><?= $text->getText($view); ?></p>
+        </div>
     </section>
     </section>
 </body>

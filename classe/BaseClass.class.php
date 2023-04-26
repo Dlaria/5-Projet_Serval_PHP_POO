@@ -164,15 +164,7 @@ class BaseClass{
         }
     }
 
-    public function checkTurnRight(){
-        if ($this->_checkMove() == true){
-            return true;
-        }else{
-            return false;
-        }
-    }
     public function goTurnRight(){
-        if ($this->checkTurnRight() == true){
             switch ($this->_currentAngle){
                 case 0:
                     $this->_currentAngle = 270;
@@ -188,17 +180,8 @@ class BaseClass{
                     break;
                 }
         }
-    }
-
-    public function checkTurnLeft(){
-        if ($this->_checkMove() == true){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    
     public function goTurnLeft(){
-        if ($this->checkTurnLeft() == true){
             switch ($this->_currentAngle){
                 case 0:
                     $this->_currentAngle = 90;
@@ -215,4 +198,3 @@ class BaseClass{
             }
         }
     }
-}

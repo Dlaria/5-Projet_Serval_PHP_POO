@@ -8,7 +8,7 @@ div.screen{
     text-align:center;
 }
 img.screen{
-    width:80%;
+    width:70%;
     margin:0 auto;
 }
 img.est {
@@ -25,11 +25,11 @@ img.sud{
 }
 
 #section-1 {
-    width:80%;
+    width:70%;
     margin:0 auto;
     text-align:center;
 }
-div.boutons{
+form{
     width:30%;
     background-color:rgb(118, 180, 219);
 }
