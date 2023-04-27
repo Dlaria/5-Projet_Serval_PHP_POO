@@ -94,7 +94,7 @@ if (count($_POST) != 0){
         </form>
         <!-- pour afficher le text -->
         <div class="text">
-            <p><?= $text->getText($view); ?></p>
+            <p><?php echo $text->getText($view);  if ($text->getText($view) == 'Gagné !!'){unset($_SESSION['inventory']);}?></p>
         </div>
     </section>
     </section>
