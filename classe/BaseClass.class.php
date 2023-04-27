@@ -6,6 +6,7 @@ class BaseClass{
     protected $_dbh;
     protected $_actionStatus;
 
+    // Appel de la class DataBase et assignation des variables de bases
     public function __construct() {
         $this->_dbh = new Database();
         $this->_currentX = 0;
@@ -27,7 +28,7 @@ class BaseClass{
 
     // === currentY ===
     public function setCurrentY($_currentY){
-        if ($this->_currentY <= 2 && $this->_currentY >= 0){
+        if ($this->_currentY <= 2 || $this->_currentY >= 0){
             $this->_currentY = $_currentY;
         }
     }
@@ -37,20 +38,21 @@ class BaseClass{
 
     // === currentAngle ===
     public function setCurrentAngle($_currentAngle){
-        if ($this->_currentAngle <= 270 && $this->_currentAngle >= 0){
+        if ($this->_currentAngle <= 270 || $this->_currentAngle >= 0){
             $this->_currentAngle = $_currentAngle;
         }
     }
     public function getCurrentAngle(){
         return $this->_currentAngle;
     }
-
+    // === actionStatus ===
     public function setActionStatus(){
             $this->_actionStatus = 1;
     }
 
     // Fonction de vérification du movement si il est possible ou non
     public function _checkMove() {
+        
         $sql = "SELECT * FROM map WHERE coordx=:currentX AND coordy=:currentY AND direction=:currentAngle AND status_action=:actionStatus";
         $query = $this->_dbh->prepare($sql);
         $query->bindParam(':currentX', $this->_currentX, PDO::PARAM_INT);
@@ -65,7 +67,7 @@ class BaseClass{
             return false;
         }
     }
-
+    // Vérification si _checkMove retourne bien true
     public function checkForward(){
         if ($this->_checkMove() == true){
             return true;
@@ -73,7 +75,7 @@ class BaseClass{
             return false;
         }
     }
-
+    // Execution du mouvement
     public function goForward(){
         if ($this->checkForward() == true){
             switch ($this->_currentAngle){

@@ -2,6 +2,7 @@
 class FirstPersonText extends BaseClass {
     protected $_mapId;
 
+    // Récupération de l'id de la table "map" en fonction des coordonnées
     public function setText(FirstPersonView $data){
         $sql = "SELECT * FROM text 
         INNER JOIN map ON map.id = text.map_id
@@ -19,12 +20,19 @@ class FirstPersonText extends BaseClass {
             return false;
         }
     }
-
+    // Récupération et retour du texte à affiché dans la table "text"
     public function getText(FirstPersonView $data){
         if ($this->setText($data) == true){
-            $query = $data->_dbh->prepare("SELECT * FROM text WHERE map_id=:mapId AND status_action=:actionStatus");
-            $query->bindParam(':mapId',$this->_mapId);
-            $query->bindParam(':actionStatus',$data->_actionStatus,PDO::PARAM_INT);
+            if (isset($_SESSION['inventory']) === true){
+                $sql = "SELECT * FROM text WHERE map_id=:mapId AND status_action=:actionStatus";
+                $query = $data->_dbh->prepare($sql);
+                $query->bindParam(':mapId',$this->_mapId);
+                $query->bindParam(':actionStatus',$data->_actionStatus,PDO::PARAM_INT);
+            }else{
+                $sql = "SELECT * FROM text WHERE map_id=:mapId AND status_action=0";
+                $query = $data->_dbh->prepare($sql);
+                $query->bindParam(':mapId',$this->_mapId);
+            }
             $query->execute();
             $result = $query->fetch(PDO::FETCH_OBJ);
             if(!empty($result)){

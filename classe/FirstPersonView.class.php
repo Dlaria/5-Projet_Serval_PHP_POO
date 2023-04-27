@@ -2,6 +2,7 @@
 class FirstPersonView extends BaseClass {
     protected $_mapId;
 
+    // Récupération de l'id de la table "map" en fonction des coordonnées
     public function setView(){
         $sql = "SELECT * FROM image 
         INNER JOIN map ON map.id = image.map_id
@@ -19,6 +20,8 @@ class FirstPersonView extends BaseClass {
             return false;
         }
     }
+
+    // Récupération et retour de la source des images dans la table "image"
     public function getView(){
         if ($this->setView() == true){
             $query = $this->_dbh->prepare("SELECT * FROM image WHERE map_id=:mapid AND status_action=:actionStatus");
@@ -31,6 +34,8 @@ class FirstPersonView extends BaseClass {
             }
         }
     }
+
+    // changement de la class de la boussole en fonction de l'angle de vue
     public function getAnimCompass(){
         switch ($this->_currentAngle){
             case 0:

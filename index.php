@@ -1,20 +1,19 @@
 <?php
+// §Fonction d'autocharchement des pages de chaque class
 function chargerClasse($classe){
     require 'classe/'.$classe.'.class.php';
 }
 spl_autoload_register('chargerClasse');
 
+session_start();
+
+// Création et stockage des objets de class dans des variables
 $view = new FirstPersonView();
 $text = new FirstPersonText();
 $action = new FirstPersonAction();
 
 if (count($_POST) != 0){
     // var_dump($_POST);
-    if (isset($_POST['currentx']) === true){
-        $view->setCurrentX((int) $_POST['currentx']);
-        $view->setCurrentY((int) $_POST['currenty']);
-        $view->setCurrentAngle((int) $_POST['currentangle']);
-    }
     foreach ($_POST as $key => $value){
         switch ($key){
             case 'upArrow':
@@ -44,8 +43,13 @@ if (count($_POST) != 0){
             case 'btnAction':
                 $view->setActionStatus();
                 $action->goAction($view);
+                break;
 
-            
+            // Récupération des valeurs des input[hidden] dans le tableau _POST 
+            case 'currentx':
+                $view->setCurrentX((int) $_POST['currentx']);
+                $view->setCurrentY((int) $_POST['currenty']);
+                $view->setCurrentAngle((int) $_POST['currentangle']);
             }
         }
     }
@@ -65,10 +69,11 @@ if (count($_POST) != 0){
     </div>
     <section id="section-1">
         <form method="post">
+            <!-- stockage des coordonnées pour éviter le problème du rafraichissement  -->
             <input type="hidden" name="currentx" value="<?= $view->getCurrentX(); ?>">
             <input type="hidden" name="currenty" value="<?= $view->getCurrentY(); ?>">
             <input type="hidden" name="currentangle" value="<?= $view->getCurrentAngle(); ?>">
-            <div class="boutons">
+            <div>
                 <table>
                     <tr>
                         <td><input type="submit" name="leftRotate" id="leftRotate" value="\"></td>

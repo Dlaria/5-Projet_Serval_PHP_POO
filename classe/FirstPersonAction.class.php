@@ -2,6 +2,7 @@
 class FirstPersonAction extends BaseClass{
     protected $_mapId;
 
+    // Récupération de l'id de la table "map" en fonction des coordonnées
     public function checkAction(FirstPersonView $data){
         $sql = "SELECT * FROM action 
         INNER JOIN map ON map.id = action.map_id
@@ -21,6 +22,7 @@ class FirstPersonAction extends BaseClass{
         }
     }
 
+    // Récupération des actions dans la table "action" et pour chaques actions mise à jour du status et gestion de l'inventaire
     public function goAction(FirstPersonView $data){
         if ($this->checkAction($data) == true){
             $query = $data->_dbh->prepare("SELECT * FROM action INNER JOIN items ON action.item_id = items.id WHERE map_id=:mapId");
@@ -28,24 +30,23 @@ class FirstPersonAction extends BaseClass{
             $query->execute();
             $result = $query->fetch(PDO::FETCH_OBJ);
             if(!empty($result)){
-                // var_dump($result);
-                switch ($result->action){
-                    case 'take':
+
+                // L'action "take" se met à jour pour avoir un status égal a 1 et stockage de la clé dans le tableau de session
+                if ($result->action == 'take'){
+                    $sql = "UPDATE action SET status=1 WHERE map_id=:mapId";
+                    $query = $data->_dbh->prepare($sql);
+                    $query->bindParam(':mapId',$this->_mapId);
+                    $query->execute();
+                    $_SESSION['inventory'] = $result->description;
+                    
+                // L'action "use" se met à jour pour avoir un status égal a 1 si la clé est dans l'inventaire
+                }elseif ($result->action == 'use'){
+                    if (isset($_SESSION['inventory']) && $_SESSION['inventory'] === $result->description){
                         $sql = "UPDATE action SET status=1 WHERE map_id=:mapId";
                         $query = $data->_dbh->prepare($sql);
                         $query->bindParam(':mapId',$this->_mapId);
                         $query->execute();
-                        $_SESSION['inventory'] = $result->description;
-                        break;
-                    case 'use':
-                        if (isset($_SESSION['inventory']) === true && $_SESSION['inventory'] === $result->description){
-                            $sql = "UPDATE action SET status=1 WHERE map_id=:mapId";
-                            $query = $data->_dbh->prepare($sql);
-                            $query->bindParam(':mapId',$this->_mapId);
-                            $query->execute();
-
-                        }
-                        break;
+                    }
                 }
             }
         }
