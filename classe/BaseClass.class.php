@@ -51,14 +51,12 @@ class BaseClass{
     }
 
     // Fonction de vérification du movement si il est possible ou non
-    public function _checkMove() {
-        
-        $sql = "SELECT * FROM map WHERE coordx=:currentX AND coordy=:currentY AND direction=:currentAngle AND status_action=:actionStatus";
+    public function _checkMove(int $newX, int $newY, int $newAngle) {
+        $sql = "SELECT * FROM map WHERE coordx=:currentX AND coordy=:currentY AND direction=:currentAngle";
         $query = $this->_dbh->prepare($sql);
-        $query->bindParam(':currentX', $this->_currentX, PDO::PARAM_INT);
-        $query->bindParam(':currentY', $this->_currentY, PDO::PARAM_INT);
-        $query->bindParam(':currentAngle', $this->_currentAngle, PDO::PARAM_INT);
-        $query->bindParam(':actionStatus',$this->_actionStatus,PDO::PARAM_INT);
+        $query->bindParam(':currentX', $newX, PDO::PARAM_INT);
+        $query->bindParam(':currentY', $newY, PDO::PARAM_INT);
+        $query->bindParam(':currentAngle', $newAngle, PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_OBJ);
         if (!empty($result)){
@@ -69,12 +67,24 @@ class BaseClass{
     }
     // Vérification si _checkMove retourne bien true
     public function checkForward(){
-        if ($this->_checkMove() == true){
-            return true;
-        }else{
-            return false;
+        $newX = $this->_currentX;
+        $newY = $this->_currentY;
+            switch ($this->_currentAngle){
+                case 0:
+                    $newX++;
+                    break;
+                case 90:
+                    $newY++;
+                    break;
+                case 180:
+                    $newX--;
+                    break;
+                case 270:
+                    $newY--;
+                    break;
+            }
+            return $this->_checkMove($newX, $newY, $this->_currentAngle);
         }
-    }
     // Execution du mouvement
     public function goForward(){
         if ($this->checkForward() == true){
@@ -96,12 +106,24 @@ class BaseClass{
     }
 
     public function checkBack(){
-        if ($this->_checkMove() == true){
-            return true;
-        }else{
-            return false;
+        $newX = $this->_currentX;
+        $newY = $this->_currentY;
+            switch ($this->_currentAngle){
+                case 0:
+                    $newX--;
+                    break;
+                case 90:
+                    $newY--;
+                    break;
+                case 180:
+                    $newX++;
+                    break;
+                case 270:
+                    $newY++;
+                    break;
+            }
+            return $this->_checkMove($newX, $newY, $this->_currentAngle);
         }
-    }
     public function goBack(){
         if ($this->checkBack() == true){
             switch ($this->_currentAngle){
@@ -122,8 +144,24 @@ class BaseClass{
     }
     
     public function checkRight(){
-        if ($this->_checkMove() == true){
-            return true;
+        $newX = $this->_currentX;
+        $newY = $this->_currentY;
+        if ($this->_checkMove($newX, $newY, $this->_currentAngle) == true){
+            switch ($this->_currentAngle){
+                case 0:
+                    $newY--;
+                    break;
+                case 90:
+                    $newX++;
+                    break;
+                case 180:
+                    $newY++;
+                    break;
+                case 270:
+                    $newX--;
+                    break;
+            }
+            return $this->_checkMove($newX, $newY, $this->_currentAngle);
         }else{
             return false;
         }
@@ -148,8 +186,24 @@ class BaseClass{
     }
 
     public function checkLeft(){
-        if ($this->_checkMove() == true){
-            return true;
+        $newX = $this->_currentX;
+        $newY = $this->_currentY;
+        if ($this->_checkMove($newX, $newY, $this->_currentAngle) == true){
+            switch ($this->_currentAngle){
+                case 0:
+                    $newY++;
+                    break;
+                case 90:
+                    $newX--;
+                    break;
+                case 180:
+                    $newY--;
+                    break;
+                case 270:
+                    $newX++;
+                    break;
+            }
+            return $this->_checkMove($newX, $newY, $this->_currentAngle);
         }else{
             return false;
         }

@@ -77,16 +77,16 @@ if (count($_POST) != 0){
                 <table>
                     <tr>
                         <td><input type="submit" name="leftRotate" id="leftRotate" value="\"></td>
-                        <td><input type="submit" name="upArrow" id="upArrow" value="^"></td>
+                        <td><input type="submit" name="upArrow" id="upArrow" value="^" <?php if($view->checkForward() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                         <td><input type="submit" name="rightRotate" id="rightRotate" value="/"></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" name="leftArrow" id="leftArrow" value="<"></td>
+                        <td><input type="submit" name="leftArrow" id="leftArrow" value="<" <?php if($view->checkLeft() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                         <td><input type="submit" name="btnAction" id="btnAction" value="X"></td>
-                        <td><input type="submit" name="rightArrow" id="rightArrow" value=">"></td>
+                        <td><input type="submit" name="rightArrow" id="rightArrow" value=">" <?php if($view->checkRight() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" name="downArrow" id="downArrow" value="v"></td>
+                        <td><input type="submit" name="downArrow" id="downArrow" value="v" <?php if($view->checkBack() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                     </tr>
                 </table>
                     <img src="assets/compass.png" alt="compass" class="compass <?= $view->getAnimCompass(); ?>">
