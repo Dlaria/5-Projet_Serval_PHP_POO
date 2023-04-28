@@ -25,25 +25,39 @@ img.sud{
 }
 
 #section-1 {
-    width:70%;
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:center;
+    background-image:url(assets/1025035.jpg);
+    background-size:cover;
     margin:0 auto;
     text-align:center;
+    width:70%;
 }
 form{
-    width:30%;
-    background-color:rgb(118, 180, 219);
+    background-color:rgba(118, 180, 219,0.5);
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:center;
+    align-items:center;
 }
 table {
     background-color:blue;
     text-align:center;
     border-radius:20px;
-    width:50%;
     margin:0 auto;
+    width:40%;
     
 }
 img.compass{
-    width:50%;
+    width:40%;
 }
 div.text{
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
     width:70%;
+    background-color:rgba(0, 139, 139,0.5) ;
 }
