@@ -260,4 +260,13 @@ class BaseClass{
                     break;
             }
         }
+    
+    // Réinitialise le tableau _SESSION['inventory'] et les status des actions
+    public function reset(){
+        unset($_SESSION['inventory']);
+        
+        $sql = "UPDATE action SET status=0";
+        $query = $this->_dbh->prepare($sql);
+        $query->execute();
     }
+}

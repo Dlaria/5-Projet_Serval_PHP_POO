@@ -53,6 +53,7 @@ if (count($_POST) != 0){
             }
         }
     }
+    // var_dump($action->checkAction($view));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -82,7 +83,7 @@ if (count($_POST) != 0){
                     </tr>
                     <tr>
                         <td><input type="submit" name="leftArrow" id="leftArrow" value="<" <?php if($view->checkLeft() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
-                        <td><input type="submit" name="btnAction" id="btnAction" value="X"></td>
+                        <td><input type="submit" name="btnAction" id="btnAction" value="X" <?php echo ($action->checkAction($view) == true) ? ('enabled') : ('disabled'); ?>></td>
                         <td><input type="submit" name="rightArrow" id="rightArrow" value=">" <?php if($view->checkRight() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                     </tr>
                     <tr>
@@ -94,9 +95,10 @@ if (count($_POST) != 0){
         </form>
         <!-- pour afficher le text -->
         <div class="text">
-            <p><?php echo $text->getText($view);  if ($text->getText($view) == 'Gagné !!'){unset($_SESSION['inventory']);}?></p>
+            <p><?= $text->getText($view);?></p>
         </div>
     </section>
     </section>
 </body>
 </html>
+<?php if ($text->getText($view) == 'Gagné !!'){$view->reset();} ?>
