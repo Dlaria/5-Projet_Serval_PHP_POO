@@ -47,9 +47,17 @@ if (count($_POST) != 0){
 
             // Récupération des valeurs des input[hidden] dans le tableau _POST 
             case 'currentx':
-                $view->setCurrentX((int) $_POST['currentx']);
-                $view->setCurrentY((int) $_POST['currenty']);
-                $view->setCurrentAngle((int) $_POST['currentangle']);
+                $view->setCurrentX($_POST['currentx']);
+                $view->setCurrentY($_POST['currenty']);
+                $view->setCurrentAngle($_POST['currentangle']);
+                break;
+            case 'oui':
+                $view->setCurrentX(0);
+                $view->setCurrentY(1);
+                $view->setCurrentAngle(0);
+                unset($popup);
+            case 'non':
+                echo '<script>document.location.href="https://www.google.fr"</script>';
             }
         }
     }
@@ -69,7 +77,7 @@ if (count($_POST) != 0){
         <img class="screen" src="images/<?= $view->getView(); ?>" alt="">
     </div>
     <section id="section-1">
-        <form method="post">
+        <form class="pricipal" method="post">
             <!-- stockage des coordonnées pour éviter le problème du rafraichissement  -->
             <input type="hidden" name="currentx" value="<?= $view->getCurrentX(); ?>">
             <input type="hidden" name="currenty" value="<?= $view->getCurrentY(); ?>">
@@ -97,6 +105,7 @@ if (count($_POST) != 0){
         <div class="text">
             <p><?= $text->getText($view);?></p>
         </div>
+        <?php if ($text->getText($view) == 'Gagné !!'){echo $view->reset();} ?>
     </section>
 </body>
 <!-- Script pour utiliser le clavier au lieu des boutons visibles -->
@@ -137,4 +146,3 @@ if (count($_POST) != 0){
             })
         </script>
 </html>
-<?php if ($text->getText($view) == 'Gagné !!'){$view->reset();} ?>

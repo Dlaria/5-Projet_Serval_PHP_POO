@@ -268,5 +268,23 @@ class BaseClass{
         $sql = "UPDATE action SET status=0";
         $query = $this->_dbh->prepare($sql);
         $query->execute();
+
+        $popup = 
+        '<div class="popup" id="popup">
+        <div class="popup-back"></div>
+        <div class="popup-container">
+            <h1>Gagné !!</h1>
+            <p>
+                Nous vous remercions de d\'avoir joué <br>
+                Voulez-vous recommencé ?
+            </p>
+            <br>
+            <form method="post">
+                <input type="submit" name="oui" class="btnOui" value="Oui !"></input>
+                <input type="submit" name="non" class="btnNon" value="Non"></input>
+            </form>
+        </div>
+    </div>';
+    return $popup;
     }
 }
