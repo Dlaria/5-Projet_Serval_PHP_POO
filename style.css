@@ -34,12 +34,13 @@ img.sud{
     text-align:center;
     width:70%;
 }
-form.pricipal{
+form.principal{
     background-color:rgba(118, 180, 219,0.5);
     display:flex;
     flex-flow:row wrap;
     justify-content:center;
     align-items:center;
+    margin-bottom:0;
 }
 table {
     background-color:blue;
@@ -75,13 +76,16 @@ div.text{
     position: fixed;
     top: 50%;
     left: 50%;
+    z-index:99;
     padding: 25px;
-    background-image:url(assets/1070909.jpg);
-    background-size:cover;
     color:#fff;
     transform: translate(-50%, -50%);
     text-align:center;
     width:60%;
+  }
+  #background-victoire {
+    background-image:url(assets/1070909.jpg);
+    background-size:cover;
   }
   .popup-container h1{
     font-family: 'Amatic SC';
@@ -98,4 +102,26 @@ div.text{
     line-height: 24px;
     text-align: start;
     margin:0;
+  }
+
+  /* INVENTAIRE */
+  #inventory{
+    color:#000;
+    background-image:url(assets/1137622.jpg);
+    background-size:cover;
+  }
+
+  .title-inventory{
+    margin-top:0;
+  }
+
+  .img-inventory{
+    width:15%;
+    border:2px solid #000; 
+    margin-bottom:12px;
+  }
+
+  .img-inventory:hover{
+    cursor:pointer;
+    border:2px solid rgb(255, 0, 0);
   }

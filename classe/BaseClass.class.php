@@ -51,6 +51,7 @@ class BaseClass{
     }
 
     // Fonction de vérification du movement si il est possible ou non
+    //@param newX newY newAngle sont les futurs mouvements du personnage 
     public function _checkMove(int $newX, int $newY, int $newAngle) {
         $sql = "SELECT * FROM map WHERE coordx=:currentX AND coordy=:currentY AND direction=:currentAngle";
         $query = $this->_dbh->prepare($sql);
@@ -65,7 +66,7 @@ class BaseClass{
             return false;
         }
     }
-    // Vérification si _checkMove retourne bien true
+    // Assignation des propriétés newX et newY et incrémentation de ces dernières
     public function checkForward(){
         $newX = $this->_currentX;
         $newY = $this->_currentY;
@@ -261,9 +262,9 @@ class BaseClass{
             }
         }
     
-    // Réinitialise le tableau _SESSION['inventory'] et les status des actions
+    // Réinitialise le tableau _SESSION['inventory'], les status des actions aussi et retourne une popup de victoire
     public function reset(){
-        unset($_SESSION['inventory']);
+        unset($_SESSION['cle_dore']);
         
         $sql = "UPDATE action SET status=0";
         $query = $this->_dbh->prepare($sql);
@@ -272,10 +273,10 @@ class BaseClass{
         $popup = 
         '<div class="popup" id="popup">
         <div class="popup-back"></div>
-        <div class="popup-container">
-            <h1>Gagné !!</h1>
+        <div class="popup-container" id="background-victoire">
+            <h1>Victoire !!</h1>
             <p>
-                Nous vous remercions de d\'avoir joué <br>
+                Vous avez trouver la clé et vous êtes sorti ! Bravo !<br>
                 Voulez-vous recommencé ?
             </p>
             <br>

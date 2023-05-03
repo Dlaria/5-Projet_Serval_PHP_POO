@@ -16,6 +16,8 @@ if (count($_POST) != 0){
     // var_dump($_POST);
     foreach ($_POST as $key => $value){
         switch ($key){
+
+            // Bouton de direction
             case 'upArrow':
                 $view->goForward();
                 break;
@@ -51,13 +53,23 @@ if (count($_POST) != 0){
                 $view->setCurrentY($_POST['currenty']);
                 $view->setCurrentAngle($_POST['currentangle']);
                 break;
+
+            // Boutons de gestion de l'inventaire
+            case 'fermerInventory':
+                unset($inventory);
+                break;
+
+            // Bouton oui/non de la popup de victoire
             case 'oui':
                 $view->setCurrentX(0);
                 $view->setCurrentY(1);
                 $view->setCurrentAngle(0);
                 unset($popup);
+                break;
+                
             case 'non':
                 echo '<script>document.location.href="https://www.google.fr"</script>';
+                break;
             }
         }
     }
@@ -69,6 +81,7 @@ if (count($_POST) != 0){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Comme Doom</title>
 </head>
@@ -77,31 +90,35 @@ if (count($_POST) != 0){
         <img class="screen" src="images/<?= $view->getView(); ?>" alt="">
     </div>
     <section id="section-1">
-        <form class="pricipal" method="post">
-            <!-- stockage des coordonnées pour éviter le problème du rafraichissement  -->
+        <form class="principal" method="post">
+            <!-- Stockage des coordonnées pour éviter le problème du rafraichissement  -->
             <input type="hidden" name="currentx" value="<?= $view->getCurrentX(); ?>">
             <input type="hidden" name="currenty" value="<?= $view->getCurrentY(); ?>">
             <input type="hidden" name="currentangle" value="<?= $view->getCurrentAngle(); ?>">
             <div>
                 <table>
                     <tr>
-                        <td><input type="submit" name="leftRotate" id="leftRotate" value="\"></td>
-                        <td><input type="submit" name="upArrow" id="upArrow" value="^" <?php if($view->checkForward() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
+                        <td><input type="submit" name="leftRotate" id="leftRotate" class="fa" value="\"></td>
+                        <td><input type="submit" name="upArrow" id="upArrow" class="fa" value="&#xf30c;" <?php if($view->checkForward() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                         <td><input type="submit" name="rightRotate" id="rightRotate" value="/"></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" name="leftArrow" id="leftArrow" value="<" <?php if($view->checkLeft() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
-                        <td><input type="submit" name="btnAction" id="btnAction" value="X" <?php echo ($action->checkAction($view) == true) ? ('enabled') : ('disabled'); ?>></td>
-                        <td><input type="submit" name="rightArrow" id="rightArrow" value=">" <?php if($view->checkRight() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
+                        <td><input type="submit" name="leftArrow" id="leftArrow" class="fa" value="&#xf30a;" <?php if($view->checkLeft() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
+                        <td><input type="submit" name="btnAction" id="btnAction" class="fa" value="&#xf25a;" <?php echo ($action->checkAction($view) == true) ? ('enabled') : ('disabled'); ?>></td>
+                        <td><input type="submit" name="rightArrow" id="rightArrow" class="fa" value="&#xf30b;" <?php if($view->checkRight() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" name="downArrow" id="downArrow" value="v" <?php if($view->checkBack() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
+                        <td><input type="submit" name="btnInventory" id="btnInventory" class="fa" value="&#xf0c9;"></td>
+                        <td><input type="submit" name="downArrow" id="downArrow" class="fa" value="&#xf309;" <?php if($view->checkBack() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                     </tr>
                 </table>
                     <img src="assets/compass.png" alt="compass" class="compass <?= $view->getAnimCompass(); ?>">
             </div>
+            <?php if(isset($_POST['btnInventory']) === true){
+                echo $action->getInventory($view);
+            }?>
         </form>
-        <!-- pour afficher le text -->
+        <!-- Affichage du text -->
         <div class="text">
             <p><?= $text->getText($view);?></p>
         </div>
@@ -109,15 +126,15 @@ if (count($_POST) != 0){
     </section>
 </body>
 <!-- Script pour utiliser le clavier au lieu des boutons visibles -->
-<script type="text/javascript">
+    <script type="text/javascript">
             const turnLeft = document.getElementById("leftRotate"),
             goForward = document.getElementById("upArrow"),
             turnRight = document.getElementById("rightRotate"),
             goLeft = document.getElementById("leftArrow"),
             action = document.getElementById("btnAction"),
             goRight = document.getElementById("rightArrow"),
-            goBack = document.getElementById("downArrow");
-            console.log(goForward);
+            goBack = document.getElementById("downArrow"),
+            inventory = document.getElementById('btnInventory');
             document.addEventListener("keydown", (event) => {
                 
                 switch (event.code) {
@@ -142,7 +159,10 @@ if (count($_POST) != 0){
                     case 'KeyS':
                         goBack.click();
                         break;
+                    case 'KeyI':
+                        inventory.click();
+                        break;
                 }
             })
-        </script>
+    </script>
 </html>

@@ -1,6 +1,7 @@
 <?php
 class FirstPersonAction extends BaseClass{
     protected $_mapId;
+    protected $_cleDore;
 
     // Récupération de l'id de la table "map" en fonction des coordonnées
     public function checkAction(FirstPersonView $data){
@@ -37,11 +38,11 @@ class FirstPersonAction extends BaseClass{
                     $query = $data->_dbh->prepare($sql);
                     $query->bindParam(':mapId',$this->_mapId);
                     $query->execute();
-                    $_SESSION['inventory'] = $result->description;
+                    $_SESSION['cle_dore'] = $result->description;
                     
                 // L'action "use" se met à jour pour avoir un status égal a 1 si la clé est dans l'inventaire
                 }elseif ($result->action == 'use'){
-                    if (isset($_SESSION['inventory']) && $_SESSION['inventory'] === $result->description){
+                    if (isset($_SESSION['cle_dore']) && $_SESSION['cle_dore'] === $result->description){
                         $sql = "UPDATE action SET status=1 WHERE map_id=:mapId";
                         $query = $data->_dbh->prepare($sql);
                         $query->bindParam(':mapId',$this->_mapId);
@@ -49,6 +50,38 @@ class FirstPersonAction extends BaseClass{
                     }
                 }
             }
+        }
+    }
+
+    public function setInventory(FirstPersonView $data){
+        $query = $data->_dbh->prepare("SELECT * FROM items");
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_OBJ);
+
+        if (!empty($result)){
+            if (isset($_SESSION['cle_dore'])){
+                $this->_cleDore = '<img class="img-inventory" src="assets/'.$result->image.'" alt="'.$result->description.'">';
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getInventory(FirstPersonView $data){
+        if ($this->setInventory($data) == true){
+            $compassClass = $data->getAnimCompass();
+            $inventory =
+                '<div class="popup" id="popup">
+                    <div class="popup-back"></div>
+                    <div class="popup-container" id="inventory">
+                        <h2 class="title-inventory">Inventaire</h2>
+                        <img src="assets/compass.png" alt="compass" class="img-inventory '.$compassClass.'">
+                        '.$this->_cleDore.'<br>
+                            <input type="submit" name="fermerInventory" class="btnFermer" value="Fermer"></input>
+                    </div>
+                </div>';
+            return $inventory;
         }
     }
 }
