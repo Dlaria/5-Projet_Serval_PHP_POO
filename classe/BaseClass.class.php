@@ -265,6 +265,7 @@ class BaseClass{
     // Réinitialise le tableau _SESSION['inventory'], les status des actions aussi et retourne une popup de victoire
     public function reset(){
         unset($_SESSION['cle_dore']);
+        session_destroy();
         
         $sql = "UPDATE action SET status=0";
         $query = $this->_dbh->prepare($sql);

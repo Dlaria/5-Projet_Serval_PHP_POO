@@ -17,31 +17,25 @@ if (count($_POST) != 0){
     foreach ($_POST as $key => $value){
         switch ($key){
 
-            // Bouton de direction
+            // Boutons de direction
             case 'upArrow':
                 $view->goForward();
                 break;
-
             case 'leftArrow':
                 $view->goLeft();
                 break;
-
             case 'rightArrow':
                 $view->goRight();
                 break;
-
             case 'downArrow':
                 $view->goBack();
                 break;
-
             case 'leftRotate':
                 $view->goTurnLeft();
                 break;
-
             case 'rightRotate':
                 $view->goTurnRight();
                 break;
-
             case 'btnAction':
                 $view->setActionStatus();
                 $action->goAction($view);
@@ -52,11 +46,16 @@ if (count($_POST) != 0){
                 $view->setCurrentX($_POST['currentx']);
                 $view->setCurrentY($_POST['currenty']);
                 $view->setCurrentAngle($_POST['currentangle']);
+                $action->setCompassDisplay($_POST['compassDisplay']);
                 break;
 
             // Boutons de gestion de l'inventaire
-            case 'fermerInventory':
+            case 'closeInventory':
                 unset($inventory);
+                break;
+
+            case 'itemInventory':
+                $action->goCompassDisplay();
                 break;
 
             // Bouton oui/non de la popup de victoire
@@ -95,6 +94,7 @@ if (count($_POST) != 0){
             <input type="hidden" name="currentx" value="<?= $view->getCurrentX(); ?>">
             <input type="hidden" name="currenty" value="<?= $view->getCurrentY(); ?>">
             <input type="hidden" name="currentangle" value="<?= $view->getCurrentAngle(); ?>">
+            <input type="hidden" name="compassDisplay" value="<?= $action->getCompassDisplay(); ?>">
             <div>
                 <table>
                     <tr>
@@ -103,18 +103,18 @@ if (count($_POST) != 0){
                         <td><input type="submit" name="rightRotate" id="rightRotate" value="/"></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" name="leftArrow" id="leftArrow" class="fa" value="&#xf30a;" <?php if($view->checkLeft() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
-                        <td><input type="submit" name="btnAction" id="btnAction" class="fa" value="&#xf25a;" <?php echo ($action->checkAction($view) == true) ? ('enabled') : ('disabled'); ?>></td>
-                        <td><input type="submit" name="rightArrow" id="rightArrow" class="fa" value="&#xf30b;" <?php if($view->checkRight() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
+                        <td><input type="submit" name="leftArrow" id="leftArrow" class="fa" value="&#xf30a;" <?= ($view->checkLeft() == true) ? ('enabled') : ('disabled');?>></td>
+                        <td><input type="submit" name="btnAction" id="btnAction" class="fa" value="&#xf25a;" <?= ($action->checkAction($view) == true) ? ('enabled') : ('disabled'); ?>></td>
+                        <td><input type="submit" name="rightArrow" id="rightArrow" class="fa" value="&#xf30b;" <?= ($view->checkRight() == true) ? ('enabled') : ('disabled');?>></td>
                     </tr>
                     <tr>
                         <td><input type="submit" name="btnInventory" id="btnInventory" class="fa" value="&#xf0c9;"></td>
                         <td><input type="submit" name="downArrow" id="downArrow" class="fa" value="&#xf309;" <?php if($view->checkBack() == true) {echo 'enabled';}else{echo 'disabled';}?>></td>
                     </tr>
                 </table>
-                    <img src="assets/compass.png" alt="compass" class="compass <?= $view->getAnimCompass(); ?>">
+                    <img src="assets/compass.png" id="compass" alt="compass" class="compass <?= $view->getAnimCompass(); ?> <?= $action->getCompassDisplay(); ?>">
             </div>
-            <?php if(isset($_POST['btnInventory']) === true){
+            <?php if(isset($_POST['btnInventory'])){
                 echo $action->getInventory($view);
             }?>
         </form>

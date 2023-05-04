@@ -115,13 +115,22 @@ div.text{
     margin-top:0;
   }
 
-  .img-inventory{
+  .itemInventory{
     width:15%;
+    padding:0;
     border:2px solid #000; 
     margin-bottom:12px;
+    background:none;
   }
 
-  .img-inventory:hover{
+  .itemInventory:hover{
     cursor:pointer;
     border:2px solid rgb(255, 0, 0);
+  }
+  .img-inventory{
+    width:100%;
+  }
+
+  .compassDisplay{
+    display:none;
   }

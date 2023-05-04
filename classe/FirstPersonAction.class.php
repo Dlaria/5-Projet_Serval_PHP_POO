@@ -2,6 +2,28 @@
 class FirstPersonAction extends BaseClass{
     protected $_mapId;
     protected $_cleDore;
+    protected $_compassDisplay;
+
+    public function __constuct(){
+        $this->_compassDisplay = "";
+    }
+    public function setCompassDisplay($compassDisplay){
+        $this->_compassDisplay = $compassDisplay;
+    }
+    public function getCompassDisplay(){
+        return $this->_compassDisplay;
+    }
+
+    public function goCompassDisplay(){
+        switch ($this->_compassDisplay){
+            case '':
+                $this->_compassDisplay = "compassDisplay";
+                break;
+            case 'compassDisplay':
+                $this->_compassDisplay = "";
+                break;
+        }
+    }
 
     // Récupération de l'id de la table "map" en fonction des coordonnées
     public function checkAction(FirstPersonView $data){
@@ -59,8 +81,8 @@ class FirstPersonAction extends BaseClass{
         $result = $query->fetch(PDO::FETCH_OBJ);
 
         if (!empty($result)){
-            if (isset($_SESSION['cle_dore'])){
-                $this->_cleDore = '<img class="img-inventory" src="assets/'.$result->image.'" alt="'.$result->description.'">';
+            if (isset($_SESSION['cle_dore']) && $_SESSION['cle_dore'] === $result->description){
+                $this->_cleDore = '<button name="itemInventory" class="itemInventory"><img class="img-inventory" src="assets/'.$result->image.'" alt="'.$result->description.'"></button>';
             }
             return true;
         }else{
@@ -76,9 +98,9 @@ class FirstPersonAction extends BaseClass{
                     <div class="popup-back"></div>
                     <div class="popup-container" id="inventory">
                         <h2 class="title-inventory">Inventaire</h2>
-                        <img src="assets/compass.png" alt="compass" class="img-inventory '.$compassClass.'">
+                        <button name="itemInventory" class="itemInventory"><img src="assets/compass.png" alt="compass" class="img-inventory '.$compassClass.'"></button>
                         '.$this->_cleDore.'<br>
-                            <input type="submit" name="fermerInventory" class="btnFermer" value="Fermer"></input>
+                        <input type="submit" name="fermerInventory" class="btnFermer" value="Fermer"></input>
                     </div>
                 </div>';
             return $inventory;

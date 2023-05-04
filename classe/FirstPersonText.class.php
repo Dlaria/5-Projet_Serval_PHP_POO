@@ -23,7 +23,7 @@ class FirstPersonText extends BaseClass {
     // Récupération et retour du texte à affiché dans la table "text"
     public function getText(FirstPersonView $data){
         if ($this->setText($data) == true){
-            if (isset($_SESSION['inventory']) === true){
+            if (isset($_SESSION['cle_dore']) === true){
                 $sql = "SELECT * FROM text WHERE map_id=:mapId AND status_action=:actionStatus";
                 $query = $data->_dbh->prepare($sql);
                 $query->bindParam(':mapId',$this->_mapId);
