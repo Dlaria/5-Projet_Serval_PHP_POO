@@ -82,7 +82,7 @@ class FirstPersonAction extends BaseClass{
 
         if (!empty($result)){
             if (isset($_SESSION['cle_dore']) && $_SESSION['cle_dore'] === $result->description){
-                $this->_cleDore = '<button name="itemInventory" class="itemInventory"><img class="img-inventory" src="assets/'.$result->image.'" alt="'.$result->description.'"></button>';
+                $this->_cleDore = '<img class="img-cle" src="assets/'.$result->image.'" alt="'.$result->description.'">';
             }
             return true;
         }else{

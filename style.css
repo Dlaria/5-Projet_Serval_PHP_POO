@@ -130,6 +130,9 @@ div.text{
   .img-inventory{
     width:100%;
   }
+  .img-cle{
+    width:15%;
+  }
 
   .compassDisplay{
     display:none;

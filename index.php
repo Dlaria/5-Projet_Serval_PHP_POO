@@ -126,43 +126,43 @@ if (count($_POST) != 0){
     </section>
 </body>
 <!-- Script pour utiliser le clavier au lieu des boutons visibles -->
-    <script type="text/javascript">
-            const turnLeft = document.getElementById("leftRotate"),
-            goForward = document.getElementById("upArrow"),
-            turnRight = document.getElementById("rightRotate"),
-            goLeft = document.getElementById("leftArrow"),
-            action = document.getElementById("btnAction"),
-            goRight = document.getElementById("rightArrow"),
-            goBack = document.getElementById("downArrow"),
-            inventory = document.getElementById('btnInventory');
-            document.addEventListener("keydown", (event) => {
-                
-                switch (event.code) {
-                    case 'KeyQ':
-                        turnLeft.click();
-                        break;
-                    case 'KeyW':
-                        goForward.click();
-                        break;
-                    case 'KeyE':
-                        turnRight.click();
-                        break;
-                    case 'KeyA':
-                        goLeft.click();
-                        break;
-                    case 'KeyF':
-                        action.click();
-                        break;
-                    case 'KeyD':
-                        goRight.click();
-                        break;
-                    case 'KeyS':
-                        goBack.click();
-                        break;
-                    case 'KeyI':
-                        inventory.click();
-                        break;
-                }
-            })
-    </script>
+<script type="text/javascript">
+        const turnLeft = document.getElementById("leftRotate"),
+        goForward = document.getElementById("upArrow"),
+        turnRight = document.getElementById("rightRotate"),
+        goLeft = document.getElementById("leftArrow"),
+        action = document.getElementById("btnAction"),
+        goRight = document.getElementById("rightArrow"),
+        goBack = document.getElementById("downArrow"),
+        inventory = document.getElementById('btnInventory');
+        document.addEventListener("keydown", (event) => {
+            
+            switch (event.code) {
+                case 'KeyQ':
+                    turnLeft.click();
+                    break;
+                case 'KeyW':
+                    goForward.click();
+                    break;
+                case 'KeyE':
+                    turnRight.click();
+                    break;
+                case 'KeyA':
+                    goLeft.click();
+                    break;
+                case 'KeyF':
+                    action.click();
+                    break;
+                case 'KeyD':
+                    goRight.click();
+                    break;
+                case 'KeyS':
+                    goBack.click();
+                    break;
+                case 'KeyI':
+                    inventory.click();
+                    break;
+            }
+        })
+</script>
 </html>
