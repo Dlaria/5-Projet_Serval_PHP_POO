@@ -86,7 +86,9 @@ if (count($_POST) != 0){
 </head>
 <body>
     <div class="screen">
-        <img class="screen" src="images/<?= $view->getView(); ?>" alt="">
+        <img class="screen" src="
+        images/<?= $view->getView(); ?>" 
+        alt="">
     </div>
     <section id="section-1">
         <form class="principal" method="post">
@@ -95,6 +97,11 @@ if (count($_POST) != 0){
             <input type="hidden" name="currenty" value="<?= $view->getCurrentY(); ?>">
             <input type="hidden" name="currentangle" value="<?= $view->getCurrentAngle(); ?>">
             <input type="hidden" name="compassDisplay" value="<?= $action->getCompassDisplay(); ?>">
+            <div>
+                <select name="" id="">
+                    <option value=""></option>
+                </select>
+            </div>
             <div>
                 <table>
                     <tr>
