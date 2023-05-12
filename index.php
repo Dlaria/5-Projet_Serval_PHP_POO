@@ -98,9 +98,14 @@ if (count($_POST) != 0){
             <input type="hidden" name="currentangle" value="<?= $view->getCurrentAngle(); ?>">
             <input type="hidden" name="compassDisplay" value="<?= $action->getCompassDisplay(); ?>">
             <div>
-                <select name="" id="">
-                    <option value=""></option>
-                </select>
+                <select name="select_doc" id="select_doc" class="select_doc">
+                    <option value="Aurélien">Aurélien</option>
+                    <option value="CaroDoriane">Caro & Doriane</option>
+                    <option value="default_pic">Par défaut</option>
+                    <option value="Nathalie">Nathalie</option>
+                    <option value="Quentin">Quentin</option>
+                    <option value="SvetlanaEstelle">Svetlana & Estelle</option>
+                    </select>
             </div>
             <div>
                 <table>
