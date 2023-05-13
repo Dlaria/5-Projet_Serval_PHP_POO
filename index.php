@@ -105,7 +105,7 @@ if (count($_POST) != 0){
                     <option value="Nathalie">Nathalie</option>
                     <option value="Quentin">Quentin</option>
                     <option value="SvetlanaEstelle">Svetlana & Estelle</option>
-                    </select>
+                </select>
             </div>
             <div>
                 <table>
