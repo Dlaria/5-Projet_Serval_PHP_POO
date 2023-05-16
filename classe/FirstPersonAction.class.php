@@ -82,7 +82,7 @@ class FirstPersonAction extends BaseClass{
 
         if (!empty($result)){
             if (isset($_SESSION['cle_dore']) && $_SESSION['cle_dore'] === $result->description){
-                $this->_cleDore = '<img class="img-cle" src="assets/'.$result->image.'" alt="'.$result->description.'">';
+                $this->_cleDore = '<img class="img-cle" src="../assets/'.$result->image.'" alt="'.$result->description.'">';
             }
             return true;
         }else{
@@ -98,7 +98,7 @@ class FirstPersonAction extends BaseClass{
                     <div class="popup-back"></div>
                     <div class="popup-container" id="inventory">
                         <h2 class="title-inventory">Inventaire</h2>
-                        <button name="itemInventory" class="itemInventory"><img src="assets/compass.png" alt="compass" class="img-inventory '.$compassClass.'"></button>
+                        <button name="itemInventory" class="itemInventory"><img src="../assets/compass.png" alt="compass" class="img-inventory '.$compassClass.'"></button>
                         '.$this->_cleDore.'<br>
                         <input type="submit" name="fermerInventory" class="btnFermer" value="Fermer"></input>
                     </div>

@@ -28,7 +28,7 @@ img.sud{
     display:flex;
     flex-flow:row nowrap;
     justify-content:center;
-    background-image:url(assets/1025035.jpg);
+    background-image:url(../assets/1025035.jpg);
     background-size:cover;
     margin:0 auto;
     text-align:center;
@@ -84,7 +84,7 @@ div.text{
     width:60%;
   }
   #background-victoire {
-    background-image:url(assets/1070909.jpg);
+    background-image:url(../assets/1070909.jpg);
     background-size:cover;
   }
   .popup-container h1{
@@ -107,7 +107,7 @@ div.text{
   /* INVENTAIRE */
   #inventory{
     color:#000;
-    background-image:url(assets/1137622.jpg);
+    background-image:url(../assets/1137622.jpg);
     background-size:cover;
   }
 
