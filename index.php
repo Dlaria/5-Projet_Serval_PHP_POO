@@ -1,31 +1,37 @@
 <?php 
+session_start();
+$_SESSION = array();
 if (!empty($_POST)){
-    var_dump($_POST);
+    // var_dump($_POST);
     foreach ($_POST as $key => $value){
         switch ($value){
             case 'default_pic':
                 header('location:Views/defaultView.php');
                 break;
             case 'Aurelien':
+                header('location:Views/aurelView.php');
                 break;
             case 'CaroDoriane':
+                header('location:Views/carodorianeView.php');
                 break;
             case 'Nathalie':
+                header('location:Views/nathView.php');
                 break;
             case 'Quentin':
+                header('location:Views/quentinView.php');
                 break;
             case 'SvetlanaEstelle':
-                break;
-            default:
-                header('location:Views/defaultView.php');
+                header('location:Views/svetelleView.php');
                 break;
         }
+        $_SESSION["selec_doc"] = $value;
+        // var_dump($_SESSION); 
 
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
