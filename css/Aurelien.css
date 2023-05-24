@@ -1,0 +1,63 @@
+body{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+div.screen{
+    text-align:center;
+    padding-bottom:85px;
+}
+img.screen{
+    width:37%;
+}
+img.compass{
+    width:20%;
+    position:relative;
+    top:370px;
+    left:100px;
+}
+img.est {
+    rotate: 0deg;
+}
+img.nord{
+    rotate: 90deg;
+}
+img.ouest{
+    rotate:180deg;
+}
+img.sud{
+    rotate:270deg;
+}
+
+#section-1 {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:center;
+    margin:0 auto 80px auto;
+    text-align:center;
+    width:50%;
+}
+form.principal{
+    width:50%;
+    margin-left:auto;
+    position:relative;
+    bottom:390px;
+    right:250px;
+}
+table{
+    margin-left:auto;
+    width:20%;
+}
+
+button.button{
+    width:100%;
+}
+img.button{
+    width:100%;
+}
+
+div.text{
+    color:#fff;
+    font-size:16px;
+    font-family: "gabriele-bad";
+}

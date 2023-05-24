@@ -1,0 +1,16 @@
+@font-face{
+    font-family: 'gabriele-bad';
+    src: local("gabriele-bad"), url(../font/gabriele/gabriele-bad.ttf) format(truetype);
+}
+@font-face{
+    font-family: 'gabriele-br';
+    src: local("gabriele-br"), url(../font/gabriele/gabriele-br.TTF) format(truetype);
+}
+@font-face{
+    font-family: 'gabriele-d';
+    src: local("gabriele-d"), url(../font/gabriele/gabriele-d.ttf) format(truetype);
+}
+@font-face{
+    font-family: 'gabriele-l';
+    src: local("gabriele-l"), url(../font/gabriele/gabriele-l.ttf) format(truetype);
+}

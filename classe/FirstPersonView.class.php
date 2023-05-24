@@ -39,16 +39,16 @@ class FirstPersonView extends BaseClass {
     public function getAnimCompass(){
         switch ($this->_currentAngle){
             case 0:
-                $cssClass = "est";
+                $cssClass = "east";
                 break;
             case 90:
-                $cssClass = "nord";
+                $cssClass = "north";
                 break;
             case 180:
-                $cssClass = "ouest";
+                $cssClass = "west";
                 break;
             case 270:
-                $cssClass = "sud";
+                $cssClass = "south";
                 break;
         }
         return $cssClass;
