@@ -14,3 +14,11 @@
     font-family: 'gabriele-l';
     src: local("gabriele-l"), url(../font/gabriele/gabriele-l.ttf) format(truetype);
 }
+@font-face{
+    font-family: "impactLabel-l";
+    src: local("impactLabel-l"), url(../font/impact-label-font/ImpactLabel-lVYZ.ttf) format(truetype);
+}
+@font-face{
+    font-family:"impactLabelReversed-n";
+    src: local("impactLabelReversed-n"), url(../font/impact-label-font/ImpactLabelReversed-nDMR.ttf) format(truetype);
+}
