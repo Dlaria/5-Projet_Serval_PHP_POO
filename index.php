@@ -24,7 +24,7 @@ if (!empty($_POST)){
                 header('location:Views/svetelleView.php');
                 break;
         }
-        $_SESSION["selec_doc"] = $value;
+        $_SESSION["select_doc"] = $value;
         // var_dump($_SESSION); 
 
     }

@@ -81,11 +81,11 @@ if (count($_POST) != 0){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/allFont.css">
-    <link rel="stylesheet" href="../css/<?= $_SESSION['selec_doc'] ?>.css">
+    <link rel="stylesheet" href="../css/<?= $_SESSION['select_doc'] ?>.css">
     <title>Comme Doom</title>
 </head>
 <body style="
-background:#00000090 no-repeat center/cover url(../images/<?= $_SESSION['selec_doc'] ?>/background.png);
+background:#00000090 no-repeat center/cover url(../images/<?= $_SESSION['select_doc'] ?>/background.png);
 backgound-size:cover;
 ">
     <div id="section-1">
@@ -95,10 +95,10 @@ backgound-size:cover;
         </div>
     </div>
     <section id="section-2">
-        <img src="../images/<?= $_SESSION['selec_doc'] ?>/compass-<?= $view->getAnimCompass(); ?>.png" id="compass" alt="compass" class="compass <?= $view->getAnimCompass(); ?> <?= $action->getCompassDisplay(); ?>">
+        <img src="../images/<?= $_SESSION['select_doc'] ?>/compass-<?= $view->getAnimCompass(); ?>.png" id="compass" alt="compass" class="compass <?= $view->getAnimCompass(); ?> <?= $action->getCompassDisplay(); ?>">
         <div class="screen">
             <img class="screen" src="
-            ../images/<?= $_SESSION['selec_doc'] ?>/<?= $view->getView(); ?>" 
+            ../images/<?= $_SESSION['select_doc'] ?>/<?= $view->getView(); ?>" 
             alt="">
         </div>
         <form class="principal" method="post">
@@ -109,18 +109,18 @@ backgound-size:cover;
             <input type="hidden" name="compassDisplay" value="<?= $action->getCompassDisplay(); ?>">
             <table>
                 <tr>
-                        <td><button type="submit" name="leftRotate" id="leftRotate" class="button"><img src="../images/<?= $_SESSION['selec_doc'] ?>/boutons/btn-rotate-left" class="button"></button></td>
-                        <td><button type="submit" name="upArrow" id="upArrow" class="button" <?php if($view->checkForward() == true) {echo 'enabled';}else{echo 'disabled';}?>><img src="../images/<?= $_SESSION['selec_doc'] ?>/boutons/btn-nav-haut" class="button"></button></td>
-                        <td><button type="submit" name="rightRotate" id="rightRotate" class="button"><img src="../images/<?= $_SESSION['selec_doc'] ?>/boutons/btn-rotate-right" class="button"></button></td>
+                        <td><button type="submit" name="leftRotate" id="leftRotate" class="button"><img src="../images/<?= $_SESSION['select_doc'] ?>/boutons/btn-rotate-left" class="button"></button></td>
+                        <td><button type="submit" name="upArrow" id="upArrow" class="button" <?php if($view->checkForward() == true) {echo 'enabled';}else{echo 'disabled';}?>><img src="../images/<?= $_SESSION['select_doc'] ?>/boutons/btn-nav-haut" class="button"></button></td>
+                        <td><button type="submit" name="rightRotate" id="rightRotate" class="button"><img src="../images/<?= $_SESSION['select_doc'] ?>/boutons/btn-rotate-right" class="button"></button></td>
                     </tr>
                     <tr>
-                        <td><button type="submit" name="leftArrow" id="leftArrow" class="button" <?= ($view->checkLeft() == true) ? ('enabled') : ('disabled');?>><img src="../images/<?= $_SESSION['selec_doc'] ?>/boutons/btn-nav-gauche" class="button"></button></td>
-                        <td><button type="submit" name="btnAction" id="btnAction" class="button" <?= ($action->checkAction($view) == true) ? ('enabled') : ('disabled'); ?>><img src="../images/<?= $_SESSION['selec_doc'] ?>/boutons/btn-hand-action" class="button"></button></td>
-                        <td><button type="submit" name="rightArrow" id="rightArrow" class="button" <?= ($view->checkRight() == true) ? ('enabled') : ('disabled');?>><img src="../images/<?= $_SESSION['selec_doc'] ?>/boutons/btn-nav-droite" class="button"></button></td>
+                        <td><button type="submit" name="leftArrow" id="leftArrow" class="button" <?= ($view->checkLeft() == true) ? ('enabled') : ('disabled');?>><img src="../images/<?= $_SESSION['select_doc'] ?>/boutons/btn-nav-gauche" class="button"></button></td>
+                        <td><button type="submit" name="btnAction" id="btnAction" class="button" <?= ($action->checkAction($view) == true) ? ('enabled') : ('disabled'); ?>><img src="../images/<?= $_SESSION['select_doc'] ?>/boutons/btn-hand-action" class="button"></button></td>
+                        <td><button type="submit" name="rightArrow" id="rightArrow" class="button" <?= ($view->checkRight() == true) ? ('enabled') : ('disabled');?>><img src="../images/<?= $_SESSION['select_doc'] ?>/boutons/btn-nav-droite" class="button"></button></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button type="submit" name="downArrow" id="downArrow" class="button" <?php if($view->checkBack() == true) {echo 'enabled';}else{echo 'disabled';}?>><img src="../images/<?= $_SESSION['selec_doc'] ?>/boutons/btn-nav-bas" class="button"></button></td>
+                        <td><button type="submit" name="downArrow" id="downArrow" class="button" <?php if($view->checkBack() == true) {echo 'enabled';}else{echo 'disabled';}?>><img src="../images/<?= $_SESSION['select_doc'] ?>/boutons/btn-nav-bas" class="button"></button></td>
                     </tr>
                 </table>
         </form>

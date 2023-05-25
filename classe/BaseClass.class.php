@@ -18,9 +18,7 @@ class BaseClass{
 
     // === currentX ===
     public function setCurrentX($_currentX){
-        if ($this->_currentX >= 0 || $this->_currentX <= 1){
-            $this->_currentX = $_currentX;
-        }
+        $this->_currentX = $_currentX;
     }
     public function getCurrentX(){
         return $this->_currentX;
@@ -28,9 +26,7 @@ class BaseClass{
 
     // === currentY ===
     public function setCurrentY($_currentY){
-        if ($this->_currentY <= 2 || $this->_currentY >= 0){
-            $this->_currentY = $_currentY;
-        }
+        $this->_currentY = $_currentY;
     }
     public function getCurrentY(){
         return $this->_currentY;
@@ -38,9 +34,7 @@ class BaseClass{
 
     // === currentAngle ===
     public function setCurrentAngle($_currentAngle){
-        if ($this->_currentAngle <= 270 || $this->_currentAngle >= 0){
-            $this->_currentAngle = $_currentAngle;
-        }
+        $this->_currentAngle = $_currentAngle;
     }
     public function getCurrentAngle(){
         return $this->_currentAngle;

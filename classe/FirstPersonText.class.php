@@ -27,14 +27,14 @@ class FirstPersonText extends BaseClass {
                 $sql = "SELECT * FROM text WHERE map_id=:mapId AND status_action=:actionStatus AND dossiers=:dossier";
                 $query = $data->_dbh->prepare($sql);
                 $query->bindParam(':mapId',$this->_mapId);
-                $query->bindParam(':dossier',$_SESSION['selec_doc'], PDO::PARAM_STR);
+                $query->bindParam(':dossier',$_SESSION['select_doc'], PDO::PARAM_STR);
                 $query->bindParam(':actionStatus',$data->_actionStatus,PDO::PARAM_INT);
 
             }else{
                 $sql = "SELECT * FROM text WHERE map_id=:mapId AND status_action=0 AND dossiers=:dossier";
                 $query = $data->_dbh->prepare($sql);
                 $query->bindParam(':mapId',$this->_mapId);
-                $query->bindParam(':dossier',$_SESSION['selec_doc'], PDO::PARAM_STR);
+                $query->bindParam(':dossier',$_SESSION['select_doc'], PDO::PARAM_STR);
             }
             $query->execute();
             $result = $query->fetch(PDO::FETCH_OBJ);

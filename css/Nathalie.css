@@ -1,0 +1,30 @@
+body{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    height:1117px;
+    max-height:1117px;
+}
+div.screen{
+    position:absolute;
+    top:32.5%;
+    left:29%;
+}
+div.screen img{
+    width:110%;
+}
+
+form{
+    position:absolute;
+    top:62.5%;
+    left:45%;
+
+}
+div.vide{
+    width:25px;
+    height:25px;
+}
+.button{
+    background-color: transparent;
+    border:none;
+}

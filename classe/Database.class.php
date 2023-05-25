@@ -8,6 +8,9 @@ class DataBase extends PDO{
 
 
     public function __construct(){
+        if ($_SESSION['select_doc'] === "Nathalie"){
+            $this->_dbName = "fpviewnath";
+        }
         try{
             parent::__construct("mysql:host={$this->_dbHost};dbname={$this->_dbName}",$this->_dbUser,$this->_dbPass);
         }catch(PDOExeption $e){

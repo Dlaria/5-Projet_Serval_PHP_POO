@@ -31,6 +31,12 @@ class FirstPersonView extends BaseClass {
             $result = $query->fetch(PDO::FETCH_OBJ);
             if (!empty($result)){
                 return $result->path;
+            }elseif ($_SESSION['select_doc'] === "Nathalie"){
+                $query = $this->_dbh->prepare("SELECT * FROM image WHERE map_id=:mapid AND status_action=2");
+                $query->bindParam(':mapid',$this->_mapId);
+                $query->execute();
+                $result = $query->fetch(PDO::FETCH_OBJ);
+                return $result->path;
             }
         }
     }
