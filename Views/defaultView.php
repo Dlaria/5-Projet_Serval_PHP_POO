@@ -87,7 +87,7 @@ if (count($_POST) != 0){
 <body>
     <div class="screen">
         <img class="screen" src="
-        ../images/<?= $_SESSION['selec_doc'] ?>/<?= $view->getView(); ?>" 
+        ../images/<?= $_SESSION['selec_doc'] ?>/<?= $view->getView(); ?>.jpg" 
         alt="">
     </div>
     <section id="section-1">

@@ -98,7 +98,7 @@ backgound-size:cover;
         <img src="../images/<?= $_SESSION['selec_doc'] ?>/compass-<?= $view->getAnimCompass(); ?>.png" id="compass" alt="compass" class="compass <?= $view->getAnimCompass(); ?> <?= $action->getCompassDisplay(); ?>">
         <div class="screen">
             <img class="screen" src="
-            ../images/<?= $_SESSION['selec_doc'] ?>/<?= $view->getView(); ?>" 
+            ../images/<?= $_SESSION['selec_doc'] ?>/<?= $view->getView(); ?>.jpg" 
             alt="">
         </div>
         <form class="principal" method="post">
