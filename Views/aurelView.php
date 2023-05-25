@@ -85,9 +85,16 @@ if (count($_POST) != 0){
     <title>Comme Doom</title>
 </head>
 <body style="
-background:#00000090 no-repeat center/100% url(../images/<?= $_SESSION['selec_doc'] ?>/background.png);
+background:#00000090 no-repeat center/cover url(../images/<?= $_SESSION['selec_doc'] ?>/background.png);
 backgound-size:cover;
 ">
+    <div id="section-1">
+        <div class=text>
+            <h1 class="impact">THE TRUE DETECTIVE</h1><br><br>
+            <p class="impact">SÉRIE "LE CRIMIER" <br> L'AFFAIRE DE LA FORÊT SOMBRE</p>
+        </div>
+    </div>
+    <section id="section-2">
         <img src="../images/<?= $_SESSION['selec_doc'] ?>/compass-<?= $view->getAnimCompass(); ?>.png" id="compass" alt="compass" class="compass <?= $view->getAnimCompass(); ?> <?= $action->getCompassDisplay(); ?>">
         <div class="screen">
             <img class="screen" src="
@@ -117,7 +124,8 @@ backgound-size:cover;
                     </tr>
                 </table>
         </form>
-        <section id="section-1">
+    </section>
+        <section id="section-3">
         <!-- Affichage du text -->
         <div class="text">
             <p><?= $text->getText($view);?></p>

@@ -1,20 +1,21 @@
 body{
-    padding:0;
+    padding:10px;
     margin:0;
     box-sizing:border-box;
+    max-width:1920px;
+    max-height:1080px;
+    height:1080px;
 }
 div.screen{
     text-align:center;
-    padding-bottom:85px;
+    padding-left:100px;
 }
 img.screen{
-    width:37%;
+    width:100%;
 }
 img.compass{
     width:20%;
-    position:relative;
-    top:370px;
-    left:100px;
+    padding-left:35px;
 }
 img.est {
     rotate: 0deg;
@@ -28,36 +29,58 @@ img.ouest{
 img.sud{
     rotate:270deg;
 }
-
 #section-1 {
     display:flex;
     flex-flow:row nowrap;
     justify-content:center;
-    margin:0 auto 80px auto;
     text-align:center;
-    width:50%;
+    font-family:"impactLabel-l";
+    margin:50px auto 100px auto;
+}
+#section-1 div.text{
+    rotate: -3deg;
+}
+.impact{
+    display:inline;
+    background-color: #fff;
+    font-size:47px;
+}
+h1.impact{
+    font-size:57px;
+}
+#section-2 {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:space-around;
+    padding-left:100px;
+    margin:123px auto 80px auto;
+}
+#section-3 {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:center;
+    margin:0 auto 0 auto;
+    text-align:center;
+    font-family: "gabriele-br";
+    color:#fff;
+    font-size:30px;
 }
 form.principal{
-    width:50%;
-    margin-left:auto;
-    position:relative;
-    bottom:390px;
-    right:250px;
-}
-table{
-    margin-left:auto;
+    margin:0 auto;
+    padding-top:60px;
     width:20%;
 }
-
-button.button{
-    width:100%;
-}
-img.button{
-    width:100%;
+table{
+    margin:0 auto;
 }
 
-div.text{
-    color:#fff;
-    font-size:16px;
-    font-family: "gabriele-bad";
+.button{
+    width:90%;
+    background-color:transparent;
+    border:none;
+}
+
+div.text p{
+    width:710px;
+    max-width:710px;
 }
