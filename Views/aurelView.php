@@ -130,7 +130,6 @@ backgound-size:cover;
         <div class="text">
             <p><?= $text->getText($view);?></p>
         </div>
-        <?php if ($text->getText($view) == 'Gagné !!'){echo $view->reset();} ?>
     </section>
 </body>
 <!-- Script pour utiliser le clavier au lieu des boutons visibles -->
