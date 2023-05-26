@@ -53,7 +53,7 @@ h1.impact{
     flex-flow:row nowrap;
     justify-content:space-around;
     padding-left:100px;
-    margin:123px auto 80px auto;
+    margin:123px auto 40px auto;
 }
 #section-3 {
     display:flex;
@@ -83,4 +83,5 @@ table{
 div.text p{
     width:710px;
     max-width:710px;
+    margin-top:0;
 }
