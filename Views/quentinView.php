@@ -37,7 +37,7 @@ if (count($_POST) != 0){
                 $view->goTurnRight();
                 break;
             case 'btnAction':
-                $view->setActionStatus();
+                $view->setActionStatus(1);
                 $action->goAction($view);
                 break;
 

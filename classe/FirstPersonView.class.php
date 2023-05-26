@@ -24,18 +24,18 @@ class FirstPersonView extends BaseClass {
     // Récupération et retour de la source des images dans la table "image"
     public function getView(){
         if ($this->setView() == true){
-            $query = $this->_dbh->prepare("SELECT * FROM image WHERE map_id=:mapid AND status_action=:actionStatus");
+            if (isset($_SESSION['chapeau'])){
+                $this->setActionStatus(2);
+                $sql = "SELECT * FROM image WHERE map_id=:mapid AND status_action=:actionStatus";
+            }else{
+                $sql = "SELECT * FROM image WHERE map_id=:mapid AND status_action=:actionStatus";
+            }
+            $query = $this->_dbh->prepare($sql);
             $query->bindParam(':mapid',$this->_mapId);
             $query->bindParam(':actionStatus',$this->_actionStatus,PDO::PARAM_INT);
             $query->execute();
             $result = $query->fetch(PDO::FETCH_OBJ);
             if (!empty($result)){
-                return $result->path;
-            }elseif ($_SESSION['select_doc'] === "Nathalie"){
-                $query = $this->_dbh->prepare("SELECT * FROM image WHERE map_id=:mapid AND status_action=2");
-                $query->bindParam(':mapid',$this->_mapId);
-                $query->execute();
-                $result = $query->fetch(PDO::FETCH_OBJ);
                 return $result->path;
             }
         }

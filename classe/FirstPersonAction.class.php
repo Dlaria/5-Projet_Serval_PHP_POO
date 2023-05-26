@@ -56,11 +56,12 @@ class FirstPersonAction extends BaseClass{
 
                 // L'action "take" se met à jour pour avoir un status égal a 1 et stockage de la clé dans le tableau de session
                 if ($result->action == 'take'){
-                    $sql = "UPDATE action SET status=1 WHERE map_id=:mapId";
-                    $query = $data->_dbh->prepare($sql);
-                    $query->bindParam(':mapId',$this->_mapId);
-                    $query->execute();
-                    $_SESSION['cle_dore'] = $result->description;
+                        $sql = "UPDATE action SET status=1 WHERE map_id=:mapId";
+                        $query = $data->_dbh->prepare($sql);
+                        $query->bindParam(':mapId',$this->_mapId);
+                        $query->execute();
+                        $_SESSION['cle_dore'] = $result->description;
+                        $data->setActionStatus(1);
                     
                 // L'action "use" se met à jour pour avoir un status égal a 1 si la clé est dans l'inventaire
                 }elseif ($result->action == 'use'){
@@ -70,40 +71,16 @@ class FirstPersonAction extends BaseClass{
                         $query->bindParam(':mapId',$this->_mapId);
                         $query->execute();
                     }
+                }elseif ($_SESSION['select_doc'] === "SvetlanaEstelle") {
+                    if ($result->action == "porter"){
+                        $sql = "UPDATE action SET status=2 WHERE map_id=:mapId";
+                        $query = $data->_dbh->prepare($sql);
+                        $query->bindParam(':mapId',$this->_mapId);
+                        $query->execute();
+                        $_SESSION['chapeau'] = $result->description;
+                    }
                 }
             }
-        }
-    }
-
-    public function setInventory(FirstPersonView $data){
-        $query = $data->_dbh->prepare("SELECT * FROM items");
-        $query->execute();
-        $result = $query->fetch(PDO::FETCH_OBJ);
-
-        if (!empty($result)){
-            if (isset($_SESSION['cle_dore']) && $_SESSION['cle_dore'] === $result->description){
-                $this->_cleDore = '<img class="img-cle" src="../assets/'.$result->image.'" alt="'.$result->description.'">';
-            }
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public function getInventory(FirstPersonView $data){
-        if ($this->setInventory($data) == true){
-            $compassClass = $data->getAnimCompass();
-            $inventory =
-                '<div class="popup" id="popup">
-                    <div class="popup-back"></div>
-                    <div class="popup-container" id="inventory">
-                        <h2 class="title-inventory">Inventaire</h2>
-                        <button name="itemInventory" class="itemInventory"><img src="../assets/compass.png" alt="compass" class="img-inventory '.$compassClass.'"></button>
-                        '.$this->_cleDore.'<br>
-                        <input type="submit" name="fermerInventory" class="btnFermer" value="Fermer"></input>
-                    </div>
-                </div>';
-            return $inventory;
         }
     }
 }

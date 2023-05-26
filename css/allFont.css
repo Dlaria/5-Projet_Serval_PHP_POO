@@ -22,3 +22,7 @@
     font-family:"impactLabelReversed-n";
     src: local("impactLabelReversed-n"), url(../font/impact-label-font/ImpactLabelReversed-nDMR.ttf) format(truetype);
 }
+@font-face{
+    font-family:"mooncheese-regular";
+    src: local("mooncheese-regular"), url(../font/moon_cheese/MoonCheese-Regular.ttf) format(truetype);
+}

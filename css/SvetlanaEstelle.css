@@ -1,0 +1,97 @@
+body{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+div.screen{
+    text-align:center;
+    background:no-repeat center/64% url(../images/SvetlanaEstelle/ecran.png);
+    height:635px;
+}
+img.screen{
+    width:45.7%;
+    margin:85px auto 0 auto;
+    position:relative;
+    top: 0;
+    left: 12px;
+}
+img.est {
+    rotate: 0deg;
+}
+img.nord{
+    rotate: 90deg;
+}
+img.ouest{
+    rotate:180deg;
+}
+img.sud{
+    rotate:270deg;
+}
+
+#section-2 {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:center;
+    margin:0 auto;
+    text-align:center;
+    width:50%;
+}
+form.principal{
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:0;
+}
+.button{
+    padding:0;
+    margin:0;
+    width:70%;
+    /* background:none;
+    border:none; */
+}
+.touches{
+    background-color: #FFE423;
+    border-radius: 20px;
+}
+
+table {
+    text-align:center;
+    border-radius:20px;
+    margin:0 auto;
+    
+}
+img.compass{
+    width:40%;
+}
+div.text{
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:center;
+    align-items:flex-start;
+    background-color:#FFE423;
+    border-radius: 20px;
+    font-family: 'Montserrat';
+    width:100%;
+}
+div.text p{
+    padding-top:15px;
+}
+.cheese{
+    font-family:"mooncheese-regular";
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:center;
+    align-items:center;
+    border-radius: 20px;
+    width:100%;
+}
+.cheese h1{
+    background: no-repeat url(../images/SvetlanaEstelle/La\ chasse\ au\ Fromage.png);
+    width:814px;
+    height:55px;
+    max-width:814px;
+    max-height:74px;
+
+}
