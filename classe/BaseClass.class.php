@@ -255,4 +255,31 @@ class BaseClass{
                     break;
             }
         }
+
+         // Réinitialise le tableau _SESSION['inventory'], les status des actions aussi et retourne une popup de victoire
+    public function reset(){
+        unset($_SESSION['cle_dore']);
+        
+        $sql = "UPDATE action SET status=0";
+        $query = $this->_dbh->prepare($sql);
+        $query->execute();
+
+        $popup = 
+        '<div class="popup" id="popup">
+        <div class="popup-back"></div>
+        <div class="popup-container" id="background-victoire">
+            <h1>Victoire !!</h1>
+            <p>
+                Vous avez trouver la clé et vous êtes sorti ! Bravo !<br>
+                Voulez-vous recommencé ?
+            </p>
+            <br>
+            <form method="post">
+                <input type="submit" name="oui" class="btnOui" value="Oui !"></input>
+                <input type="submit" name="non" class="btnNon" value="Non"></input>
+            </form>
+        </div>
+    </div>';
+    return $popup;
+    }
 }

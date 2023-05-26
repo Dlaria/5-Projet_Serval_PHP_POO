@@ -138,7 +138,6 @@ if (count($_POST) != 0){
         goBack = document.getElementById("downArrow"),
         inventory = document.getElementById('btnInventory');
         document.addEventListener("keydown", (event) => {
-            
             switch (event.code) {
                 case 'KeyQ':
                     turnLeft.click();
@@ -164,6 +163,10 @@ if (count($_POST) != 0){
                 case 'KeyI':
                     inventory.click();
                     break;
+                case 'Escape':
+                    if (confirm("Êtes-vous sûr de revenir a l'écran de séléction ?") == true){
+                        document.location.href="../index.php";
+                    }
             }
         })
 </script>

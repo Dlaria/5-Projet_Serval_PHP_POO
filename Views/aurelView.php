@@ -169,6 +169,10 @@ backgound-size:cover;
                 case 'KeyI':
                     inventory.click();
                     break;
+                case 'Escape':
+                    if (confirm("Êtes-vous sûr de revenir a l'écran de séléction ?") == true){
+                        document.location.href="../index.php";
+                    }
             }
         })
 </script>
