@@ -18,7 +18,7 @@ if (!empty($_POST)){
                 header('location:Views/nathView.php');
                 break;
             case 'Quentin':
-                header('location:Views/quentinView.php');
+                header('location:Views/quentinsanithView.php');
                 break;
             case 'SvetlanaEstelle':
                 header('location:Views/svetelleView.php');
@@ -36,17 +36,17 @@ if (!empty($_POST)){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sélétion de version</title>
+    <title>Séléction de version</title>
 </head>
 <body>
     <h1>Séléctionne ta version du jeu !</h1>
     <form method="post">
         <select name="select_doc" id="select_doc" class="select_doc">
-            <option value="default_pic">Par défaut</option>
+            <option value="default_pic" selected>Par défaut</option>
             <option value="Aurelien">Aurélien</option>
             <option value="CaroDoriane">Caro & Doriane</option>
             <option value="Nathalie">Nathalie</option>
-            <option value="Quentin">Quentin</option>
+            <option value="Quentin">Quentin & Sanith</option>
             <option value="SvetlanaEstelle">Svetlana & Estelle</option>
         </select><br>
         <input type="submit" value="C'est parti !">
