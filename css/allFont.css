@@ -1,3 +1,4 @@
+/* Font Aurelien */
 @font-face{
     font-family: 'gabriele-bad';
     src: local("gabriele-bad"), url(../font/gabriele/gabriele-bad.ttf) format(truetype);
@@ -22,6 +23,14 @@
     font-family:"impactLabelReversed-n";
     src: local("impactLabelReversed-n"), url(../font/impact-label-font/ImpactLabelReversed-nDMR.ttf) format(truetype);
 }
+
+/* Font Quentin & Sanith */
+@font-face{
+    font-family:"berkshireSwash-regular";
+    src: local("berkshireSwash-regular"), url(../font/Typo/BerkshireSwash-Regular.ttf) format(truetype);
+}
+
+/* Font Svetlana & Estelle */
 @font-face{
     font-family:"mooncheese-regular";
     src: local("mooncheese-regular"), url(../font/moon_cheese/MoonCheese-Regular.ttf) format(truetype);

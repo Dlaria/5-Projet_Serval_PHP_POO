@@ -1,0 +1,42 @@
+body{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+div.titre{
+    text-align:center;
+}
+#section-1{
+    display: flex;
+    flex-flow:row nowrap;
+    justify-content: center;
+    text-align: center;
+}
+
+#section-1 form input{
+    margin-top:12px;
+}
+
+#section-1 form select{
+    font-size:20px;
+}
+
+#section-1 form select option.default_pic{
+    font-family:initial; 
+}
+#section-1 form select option.Aurelien{
+    font-family: "gabriele-br";
+}
+
+#section-1 form select option.CaroDoriane{
+    font-family:initial;   
+}
+#section-1 form select option.Nathalie{
+    font-family:initial; 
+}
+#section-1 form select option.Quentin{
+    font-family:"berkshireSwash-regular";
+}
+#section-1 form select option.SvetlanaEstelle{
+    font-family:"mooncheese-regular";
+}
