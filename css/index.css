@@ -2,9 +2,11 @@ body{
     padding:0;
     margin:0;
     box-sizing:border-box;
+    height:1100px;
 }
 div.titre{
     text-align:center;
+    margin: 15px auto;
 }
 #section-1{
     display: flex;
@@ -15,6 +17,7 @@ div.titre{
 
 #section-1 form input{
     margin-top:12px;
+    
 }
 
 #section-1 form select{
@@ -29,10 +32,10 @@ div.titre{
 }
 
 #section-1 form select option.CaroDoriane{
-    font-family:initial;   
+    font-family:"gratitudeScriptPro";   
 }
 #section-1 form select option.Nathalie{
-    font-family:initial; 
+    font-family:"media-gothic"; 
 }
 #section-1 form select option.Quentin{
     font-family:"berkshireSwash-regular";

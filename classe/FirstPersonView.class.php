@@ -24,7 +24,7 @@ class FirstPersonView extends BaseClass {
     // Récupération et retour de la source des images dans la table "image"
     public function getView(){
         if ($this->setView() == true){
-            if (isset($_SESSION['chapeau'])){
+            if (isset($_SESSION['chapeau']) && $_SESSION['select_doc'] === "SvetlanaEstelle"){
                 $this->setActionStatus(2);
                 $sql = "SELECT * FROM image WHERE map_id=:mapid AND status_action=:actionStatus";
             }else{

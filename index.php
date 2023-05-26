@@ -42,7 +42,7 @@ if (!empty($_POST)){
 </head>
 <body>
     <div class="titre">
-        <h1>Séléctionne ta version du jeu !</h1>
+        <h1 id=titre>Selectionne ta version du jeu !</h1>
     </div>
     <section id="section-1">
         <form method="post">
@@ -61,22 +61,50 @@ if (!empty($_POST)){
     <script>
         let getFont = () => {
             let select = document.getElementById('select_doc'),
-            font = "";
+            titre = document.getElementById('titre');
+            console.log(document.body.style);
             switch(select.value){
                 case 'Aurelien':
-                    font = "gabriele-br";
-                    select.style.fontFamily = font;
+                    select.style.fontFamily = "gabriele-br";
+                    titre.style.fontFamily = "impactLabel-l";
+                    titre.style.display = "inline";
+                    titre.style.backgroundColor = "white";
+                    document.body.style.background = "#00000090 no-repeat center/cover url(images/Aurelien/background.png)"
+                    break;
+                case 'CaroDoriane':
+                    select.style.fontFamily = "gratitudeScriptPro";
+                    titre.style.fontFamily = "gratitudeScriptPro";
+                    titre.style.display = "";
+                    titre.style.backgroundColor = "";
+                    document.body.style.background = "#00000090 no-repeat center/cover url(images/CaroDoriane/background.png)"
+                    break;
+                case 'Nathalie':
+                    select.style.fontFamily = "media-gothic";
+                    titre.style.fontFamily = "media-gothic";
+                    titre.style.display = "";
+                    titre.style.backgroundColor = "";
+                    document.body.style.background = "#00000090 no-repeat center/cover url(images/Nathalie/background.png)"
                     break;
                 case 'Quentin':
-                    font = "berkshireSwash-regular";
-                    select.style.fontFamily = font;
+                    select.style.fontFamily = "berkshireSwash-regular";
+                    titre.style.fontFamily = "berkshireSwash-regular";
+                    titre.style.display = "";
+                    titre.style.backgroundColor = "";
+                    document.body.style.background = "#00000090 no-repeat center/cover url(images/Quentin/background.jpg)"
                     break;
                 case 'SvetlanaEstelle':
-                    font = "mooncheese-regular";
-                    select.style.fontFamily = font;
+                    select.style.fontFamily = "mooncheese-regular";
+                    titre.style.fontFamily = "mooncheese-regular";
+                    titre.style.display = "";
+                    titre.style.backgroundColor = "";
+                    document.body.style.background = "#00000090 no-repeat center/cover url(images/SvetlanaEstelle/background.jpg)"
                     break;
                 default:
                     select.style.fontFamily = "";
+                    titre.style.fontFamily = "";
+                    titre.style.display = "";
+                    titre.style.backgroundColor = "";
+                    document.body.style.background = ""
                     break;
             }
 
