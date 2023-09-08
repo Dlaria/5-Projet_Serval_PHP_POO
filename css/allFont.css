@@ -24,16 +24,6 @@
     src: local("impactLabelReversed-n"), url(../font/impact-label-font/ImpactLabelReversed-nDMR.ttf) format(truetype);
 }
 
-/* Font Caro & Doriane */
-@font-face{
-    font-family:"gratitudeScriptPro";
-    src: local("gratitudeScriptPro"), url(../font/OTF/Gratitude\ Script\ Pro\ .otf) format(opentype);
-}
-@font-face{
-    font-family:"gratitudeSmoothScriptPro";
-    src: local("gratitudeSmoothScriptPro"), url(../font/OTF/Gratitude\ Smooth\ Script\ Pro.otf) format(opentype);
-}
-
 /* Font Nathalie approximative */
 @font-face{
     font-family:"media-gothic";

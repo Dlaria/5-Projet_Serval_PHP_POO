@@ -11,9 +11,6 @@ if (!empty($_POST)){
             case 'Aurelien':
                 header('location:Views/aurelView.php');
                 break;
-            case 'CaroDoriane':
-                header('location:Views/carodorianeView.php');
-                break;
             case 'Nathalie':
                 header('location:Views/nathView.php');
                 break;
@@ -49,7 +46,6 @@ if (!empty($_POST)){
             <select name="select_doc" id="select_doc" class="select_doc" oninput="getFont()">
                 <option value="default_pic" class="default_pic" id="default_pic" selected>Par défaut</option>
                 <option value="Aurelien" class="Aurelien" id="Aurelien">Aurélien</option>
-                <option value="CaroDoriane" class="CaroDoriane" id="CaroDoriane">Caro & Doriane</option>
                 <option value="Nathalie" class="Nathalie" id="Nathalie">Nathalie</option>
                 <option value="Quentin" class="Quentin" id="Quentin">Quentin & Sanith</option>
                 <option value="SvetlanaEstelle" class="SvetlanaEstelle" id="SvetlanaEstelle">Svetlana & Estelle</option>
@@ -70,13 +66,6 @@ if (!empty($_POST)){
                     titre.style.display = "inline";
                     titre.style.backgroundColor = "white";
                     document.body.style.background = "#00000090 no-repeat center/cover url(images/Aurelien/background.png)"
-                    break;
-                case 'CaroDoriane':
-                    select.style.fontFamily = "gratitudeScriptPro";
-                    titre.style.fontFamily = "gratitudeScriptPro";
-                    titre.style.display = "";
-                    titre.style.backgroundColor = "";
-                    document.body.style.background = "#00000090 no-repeat center/cover url(images/CaroDoriane/background.png)"
                     break;
                 case 'Nathalie':
                     select.style.fontFamily = "media-gothic";
